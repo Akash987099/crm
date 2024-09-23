@@ -1,0 +1,11 @@
+.blink-soft {
+    background-color: #ff0000;
+}
+.blink-soft {
+    animation: blinker 1.5s linear infinite;
+}
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}

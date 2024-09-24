@@ -56,8 +56,18 @@ class ManagerLoginController extends Controller
         // }
     }
 
-    public function Manager_logout()
+    public function Manager_logout(Request $request)
     {
+
+        Auth::guard('manager')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+    
+        return redirect('manager/login');
+
+        return redirect()->route('employeeLogin');
+
         if (Session::has('user_id')) {
             Session::pull('user_id');
             return redirect('manager/login');

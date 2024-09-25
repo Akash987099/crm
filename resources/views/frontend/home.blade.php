@@ -82,7 +82,7 @@
             </div>
         </div>
         {{-- <div class="col-lg-4">
-           
+            <!-- Recent Activity -->
             <div class="card">
                 <div class="card-body pb-0">
                     <h5 class="card-title">Recent Leads &nbsp; <span> @php date_default_timezone_set('Asia/Kolkata'); echo date('d-m-Y H:i'); @endphp</span></h5>

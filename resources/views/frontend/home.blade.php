@@ -81,7 +81,7 @@
 
             </div>
         </div>
-        <div class="col-lg-4">
+        {{-- <div class="col-lg-4">
             <!-- Recent Activity -->
             <div class="card">
                 <div class="card-body pb-0">
@@ -109,7 +109,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="row">
         <div class="col-12">

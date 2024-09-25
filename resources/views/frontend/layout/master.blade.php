@@ -124,12 +124,12 @@
 
             <li class="nav-heading">Lead Payments</li>
 
-             <li class="nav-item">
+             {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('telecaller.agent')}}">
                     <i class="bi bi-person"></i>
                     <span>Agent</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('telecaller.asset')}}">

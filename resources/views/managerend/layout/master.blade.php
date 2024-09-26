@@ -37,10 +37,10 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
-                @if(isset($setting->site_logo) && $setting->site_logo!="")
-                <img src="{{asset('public/assets/uploads/logo/'.$setting->site_logo)}}">
-                @endif
-                <span class="d-none d-lg-block">CRM Manager</span>
+                {{-- @if(isset($setting->site_logo) && $setting->site_logo!="") --}}
+                <img src="{{asset('public/assets/uploads/logo/1719429761.jpg')}}" style="height:100px; width:150px;">
+                {{-- @endif --}}
+                {{-- <span class="d-none d-lg-block">CRM Manager</span> --}}
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->

@@ -17,8 +17,8 @@
         <div class="col-lg-8">
             <div class="row">
 
-                <div class="col-xxl-4 col-md-6">
-                    <div class="card info-card sales-card">
+                <div class="col-xxl-4 col-md-6 ">
+                    <div class="card info-card sales-card rounded">
                         <div class="filter">
                             <!-- <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a> -->
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -36,7 +36,7 @@
                         ->where('status', '=', 1)
                         ->sum('blance');
                         @endphp
-                        <div class="card-body">
+                        <div class="card-body rounded">
                             <h5 class="card-title">Sales </h5>
 
                             <div class="d-flex align-items-center">
@@ -45,8 +45,6 @@
                                 </div>
                                 <div class="ps-3">
                                     <h6>{{$sales}}</h6>
-                                    <!-- <span class="text-success small pt-1 fw-bold">12%</span>
-                                    <span class="text-muted small pt-2 ps-1">increase</span> -->
                                 </div>
                             </div>
                         </div>

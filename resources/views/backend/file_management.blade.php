@@ -243,7 +243,7 @@ $('.uploaddocument').click( function(){
 $(document).ready(function() {
     $('#uploadFileForm').on('submit', function(e) {
         e.preventDefault(); 
-          alert('hello');
+        //   alert('hello');
         var formData = new FormData(this); 
 
         $.ajax({
@@ -256,6 +256,7 @@ $(document).ready(function() {
                
                 if(response.status == "success"){
                     alert('File uploaded successfully');
+                    location.reload();
                 }else{
                     alert('Error!!');
                 }

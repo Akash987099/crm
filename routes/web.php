@@ -899,7 +899,7 @@ Route::get('manager/', function () {
     // akash
 });
 Route::get('manager/login', [ManagerLoginController::class, 'Manager_Login'])->name('Manager_Login');
-Route::post('manager/login', [ManagerLoginController::class, 'Manager_Login_submit']);
+Route::match(['get' , 'post'] ,'manager/logins', [ManagerLoginController::class, 'Manager_Login_submit'])->name('Manager_Login_submit');
 
 /*************************END MANAGER LOGIN*********************************** */
 Route::prefix('manager')->middleware(['auth:manager'])->group(function () {

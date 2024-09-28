@@ -33,12 +33,15 @@ class ManagerLoginController extends Controller
 
         if (Auth::guard('manager')->attempt($credentials)) {
             // dd($credentials);
-            return redirect('manager/deshboard');
+            return response()->json(['status' => "success"]);
+            // return redirect('manager/deshboard');
             // return redirect()->route('index');
             // return view('employee.index');
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials']);
+        // return back()->withErrors(['email' => 'Invalid credentials']);
+
+        return response()->download(['status' => "error"]);
 
         $Manager = Manager::where('email' ,  $request->email)->first();
 

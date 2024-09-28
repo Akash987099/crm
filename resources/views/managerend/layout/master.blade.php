@@ -180,6 +180,71 @@
                 </a>
             </li> --}}
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('coming-soon')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Payroll</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('coming-soon')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>PERFORMANCE </span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('coming-soon')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Biometric Attendance </span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('coming-soon')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Task Management </span>
+                </a>
+            </li>   
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('coming-soon')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>User Management </span>
+                </a>
+            </li>   
+
+            
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('coming-soon')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Holiday Management </span>
+                </a>
+            </li>  
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('coming-soon')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Recruitment  Management </span>
+                </a>
+            </li>  
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('coming-soon')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Candidate Management </span>
+                </a>
+            </li> 
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('coming-soon')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Loan Management </span>
+                </a>
+            </li> 
+
             <hr>
            
             <li class="nav-heading">Meeting Details</li>
@@ -209,6 +274,11 @@
                     <span>Lead</span>
                 </a>
             </li>
+
+          
+
+            
+
 
 
             <hr>

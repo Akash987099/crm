@@ -99,6 +99,8 @@ Route::controller(ForgotPasswordController::class)->group(function(){
     Route::get('reset-password/{token}', [ForgotPasswordController::class, 'ResetPassword'])->name('ResetPasswordGet');
     Route::post('reset-password', [ForgotPasswordController::class, 'ResetPasswordStore'])->name('ResetPasswordPost');
 
+    Route::match(['get' , 'post'] , 'coming/soon' , 'comingsoon')->name('coming-soon');
+
 
 });
 

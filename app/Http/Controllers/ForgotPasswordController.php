@@ -30,6 +30,10 @@ class ForgotPasswordController extends Controller
 
     //use SendsPasswordResetEmails;
 
+    public function comingsoon(){
+        return view('coming-soon');
+    }
+
 
 
     public function ForgetPassword() {

@@ -131,7 +131,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="folderName">Employee Staff id</label>
-                                                <input type="text" class="form-control" id="staffid" name="staffid" required>
+                                                <input type="text" class="form-control" id="staffid" name="staffid" onkeypress="return isAlphaNumeric(event)" required>
+                                                {{-- <input type="text" class="form-control" id="staffid" name="staffid" required> --}}
                                             </div>
                                             <input type="hidden" name="parent_id" value="{{ $parent ? $parent->id : null }}">
                                             <button type="submit" class="btn btn-primary">Create Folder</button>
@@ -207,6 +208,23 @@
 
 <script>
 
+function isAlphaNumeric(event) {
+    var charCode = event.which ? event.which : event.keyCode;
+
+    // Allow only alphanumeric characters (a-z, A-Z, 0-9)
+    if (
+        (charCode >= 48 && charCode <= 57) || // 0-9
+        (charCode >= 65 && charCode <= 90) || // A-Z
+        (charCode >= 97 && charCode <= 122)   // a-z
+    ) {
+        return true;
+    }
+
+    // Block all other characters (special characters)
+    return false;
+}
+
+
 
 $('.uploaddocument').click( function(){
 
@@ -242,7 +260,7 @@ $(document).ready(function() {
                     alert('Error!!');
                 }
                 $('#createFolderModal').modal('hide');
-                location.reload();
+                
             },
             error: function(response) {
                 // Handle the error response (e.g., display an error message)

@@ -472,15 +472,18 @@ class attendancecontroller extends Controller
     }
 
     public function employee_file($parentId = null){
+
+        // dd($parentId);
         $parent = File::find($parentId);
         $files = File::where('parent_id', $parentId)->where('user_id' , Auth::guard('employee')->user()->id)->get();
         return view('employee.file_management' , compact('files', 'parent'));
     }
 
     public function admin_file($parentId = null){
-
+        //  dd($parentId);
         $parent = File::find($parentId);
         $files = File::where('parent_id', $parentId)->get();
+        // dd($files);    
         return view('backend.file_management' , compact('files', 'parent'));
     }
 
@@ -566,6 +569,8 @@ class attendancecontroller extends Controller
 
     public function EuploadFile(Request $request){
 
+        // dd($request->all());
+
         $parent_id = $request->parent_id;
 
         $request->validate([
@@ -628,13 +633,19 @@ class attendancecontroller extends Controller
     
         // $parent = File::find($request->parent_id);
     
-        $folderName = $parent_id ;
-        $staffpath = str_replace('#', '', $folderName);
+        // $staffpath = $parent_id ;
+        // $staffpath = str_replace('#', '', $folderName);
     
-        $directory = 'uploads/' . $staffpath;
+        $directory = 'uploads/' . $parent_id;
+
+        // dd($directory);
+        
         if (!Storage::disk('public')->exists($directory)) {
+            // return "22222222";
             Storage::disk('public')->makeDirectory($directory);
         }
+
+        // return "11111";
     
         $file = $request->file('file');
         $path = $file->store($directory, 'public');

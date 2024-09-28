@@ -18,6 +18,8 @@ class UserController extends Controller
 
     public function login()
     {
+
+        // return "112222";
         return view('backend.login');
     }
 
@@ -30,6 +32,10 @@ class UserController extends Controller
     public function userlogin(Request $request)
     {
 
+        // return "1111";
+
+        // dd($request->all());
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
@@ -38,12 +44,14 @@ class UserController extends Controller
         if ($userlogin) {
             if (Hash::check($request->password, $userlogin->password)) {
                 $request->session()->put('company_id', $userlogin->id, 'username', $userlogin->name);
-                return redirect('admin/home');
+                // return redirect('admin/home');
+
+                return response()->json(['status' => 'success']);
             } else {
-                return back()->with('faild', 'Password not match.');
+               return response()->json(['status' => 'error']);
             }
         } else {
-            return back()->with('faild', 'This email is not registered.');
+            return back()->with(['status' => "not"]);
         }
     }
 

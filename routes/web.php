@@ -519,7 +519,7 @@ Route::controller(employeecontroller::class)->group(function(){
 
 });
 Route::get('admin/login', [UserController::class, 'login'])->name('backend.admin-login');
-Route::post('admin/login', [UserController::class, 'userlogin']);
+Route::match(['get' , 'post'] ,'admin/logins', [UserController::class, 'userlogin'])->name('userlogin');
 /////////////////////////////END LOGIN /////////////////////////////////////////
 
 ///////////////////////////////SIGNUP///////////////////////////////////////////

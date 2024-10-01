@@ -744,7 +744,7 @@ if ($validator->fails()) {
 
         $credentials = $request->only('email', 'password');
 
-        $employee = Employee::where('email', $credentials['email'])->first();
+        $employee = Employee::where('email', $request->email)->first();
         
         if ($employee && $employee->check_status == 0) {
             if (Auth::guard('employee')->attempt($credentials)) {

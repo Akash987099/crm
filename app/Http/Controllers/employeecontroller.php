@@ -487,10 +487,10 @@ if ($validator->fails()) {
 
         $data = employee::where('employee.status' , 1);
 
-        if(Auth::guard('manager')->check()){
+        if (Auth::guard('manager')->check() && Auth::guard('manager')->user()->user_type == 2) {
             $user_id = Auth::guard('manager')->user()->id;
-            $data->where('employee.user_id' , $user_id);
-        }
+            $data->where('employee.user_id', $user_id);
+        }        
         
         
         $data->leftjoin('designation' , 'employee.desigantion_id' , 'designation.id')->select('employee.*' , 'designation.Designation as Designation');
@@ -731,6 +731,14 @@ if ($validator->fails()) {
     {
 
         // $id = Crypt::decrypt($request->id);
+
+        $current_time = Carbon::now()->setTimezone('Asia/Kolkata');
+        $start_time = Carbon::createFromTime(9, 0, 0, 'Asia/Kolkata'); // 9:00 AM
+        $end_time = Carbon::createFromTime(18, 0, 0, 'Asia/Kolkata'); // 6:00 PM
+
+        if ($current_time->lt($start_time) || $current_time->gt($end_time)) {
+            return response()->json(['status' => "timeout", 'message' => 'Login is allowed only between 9 AM and 6 PM IST.']);
+        }
 
         $credentials = $request->only('email', 'password');
 

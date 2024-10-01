@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\managerend\Manager;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,46 +17,37 @@ class ManagerLoginController extends Controller
     {
         return view('managerend.login');
     }
+
     public function Manager_Login_submit(Request $request)
     {
-
-        // dd($request->all());
 
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
+        // $current_time = Carbon::now()->setTimezone('Asia/Kolkata');
+        // $start_time = Carbon::createFromTime(9, 0, 0, 'Asia/Kolkata'); 
+        // $end_time = Carbon::createFromTime(18, 0, 0, 'Asia/Kolkata'); 
+
+        // if ($current_time->lt($start_time) || $current_time->gt($end_time)) {
+        //     return response()->json(['status' => "timeout", 'message' => 'Login is allowed only between 9 AM and 6 PM IST.']);
+        // }
+
         $credentials = $request->only('email', 'password');
 
         // dd($credentials);
 
         if (Auth::guard('manager')->attempt($credentials)) {
-            // dd($credentials);
-            return response()->json(['status' => "success"]);
-            // return redirect('manager/deshboard');
-            // return redirect()->route('index');
-            // return view('employee.index');
-        }
 
-        // return back()->withErrors(['email' => 'Invalid credentials']);
+            // return "1111";
+
+            return response()->json(['status' => "success"]);
+           
+        }
 
         return response()->download(['status' => "error"]);
 
-        $Manager = Manager::where('email' ,  $request->email)->first();
-
-        // dd($Manager);
-        // if ($Manager) {
-        //     if (Hash::check($request->password, $Manager->password)) {
-        //         $request->session()->put('user_id', $Manager->id);
-        //         $request->session()->put('company_id', $Manager->company_id);
-        //         return redirect('manager/deshboard');
-        //     } else {
-        //         return back()->with('faild', 'Password not match');
-        //     }
-        // } else {
-        //     return back()->with('faild', 'This email is not registred.');
-        // }
     }
 
     public function Manager_logout(Request $request)

@@ -118,7 +118,7 @@
         var table = $('.dataTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('admin_leaveAjax') }}",
+            ajax: "{{ route('managerleave-leave') }}",
 
             dom: 'Blfrtip',
             buttons: [{

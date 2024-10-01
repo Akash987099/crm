@@ -313,6 +313,21 @@ if (result.isConfirmed) {
 
 }
 
+if(response.status == "timeout"){
+
+Swal.fire({
+// title: 'Ooops....',
+text: 'Login is allowed only between 9 AM and 6 PM IST.',
+icon: 'error',
+confirmButtonText: 'OK'
+}).then((result) => {
+if (result.isConfirmed) {
+	window.location.reload();
+}
+});
+
+}
+
 if(response.status == "not"){
 
 Swal.fire({

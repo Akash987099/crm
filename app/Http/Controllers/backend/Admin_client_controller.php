@@ -75,24 +75,25 @@ class Admin_client_controller extends Controller
 
     public function viewlistlead(Request $request){
 
+        // dd($request->all());/s
+
         if ($request->ajax()) {
-            $data = DB::table('clients')->leftjoin('employee' , 'clients.assign_meating' , '=' , 'employee.id');
-                // ->where('user_id', Auth::guard('employee')->user()->id)
-
-                if(Auth::guard('manager')->check()){
-
-                    $empid = employee::where('user_id' , Auth::guard('manager')->user()->id)->pluck('id');
-                   $data->whereIn('user_id' , $empid);
-                }
-
-                $data->where('archive', 0)
-                ->orderBy('id' , 'desc')
+            $data = DB::table('clients')
+                ->leftJoin('employee', 'clients.assign_meating', '=', 'employee.id');
+        
+            if (Auth::guard('manager')->check() && Auth::guard('manager')->user()->user_type == 2) {
+                $empid = employee::where('user_id', Auth::guard('manager')->user()->id)->pluck('id');
+                $data->whereIn('user_id', $empid);
+            }
+        
+            $data->where('archive', 0)
                 ->select(
                     'clients.*',
                     DB::raw("CONCAT(employee.firstname, ' ', employee.lastname) as employee_name")
-                )
-                ->get();
-            return DataTables::of($data)->addIndexColumn()
+                );
+        
+            return DataTables::of($data)
+                ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $btn = '<a class="btn btn-info btn-sm m-1 lead_id" data-id="' . Crypt::encrypt($row->id) . '"> <i class="bi bi-eye"></i></a>';
                     $btn .= '<a class="btn btn-primary btn-sm m-1" href="' . route('lead.update-submit', ['id' => Crypt::encrypt($row->id)]) . '"> <i class="bi bi-pencil-square"></i></a>';
@@ -100,8 +101,13 @@ class Admin_client_controller extends Controller
                     return $btn;
                 })
                 ->rawColumns(['action'])
+                ->order(function ($query) {
+                    $query->orderBy('clients.id', 'desc');  // Ensure the orderBy is applied correctly
+                })
                 ->make(true);
         }
+        
+        
 
     }
 

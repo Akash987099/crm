@@ -157,10 +157,20 @@ class leavecontroller extends Controller
             $action = '&nbsp;<a href="javascript:void(0);"  class="text-primary edit" data-id="'.$id.'"><i class="bi bi-eye" aria-hidden="true"></i></a>';
             // $action .= '&nbsp;<a href="javascript:void(0);" class="text-danger delete" data-id="'.$id.'"><i class="bi bi-trash" aria-hidden="true" ></i></a>';
 
+
+            if($val->status == NULL){
+                $status = "<p>Pending</p>";
+            }elseif($val->status == 0){
+                $status = "<p>Reject</p>";
+            }else{
+                $status = "<p>Approved</p>";
+            }
+
             $data_arr[] = array(
               "id" => ++$start,
               "subject" => $subject,
               "date"  => $date,
+              'status' => $status,
               "action" => $action,
             );
 

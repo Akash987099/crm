@@ -337,7 +337,7 @@ class attendancecontroller extends Controller
 
         $currentDate = Carbon::now('Asia/Kolkata')->toDateString();
 
-        $data = DB::table('leave_master')
+        $data = DB::table('leave_master')->where('leave_master.status' , NULL)
         ->leftJoin('employee', 'leave_master.employee_id', '=', 'employee.id')
         ->whereDate('leave_master.created_at', $currentDate)
         ->select('leave_master.*' , 'employee.staffid as staffid' , 'employee.firstname' , 'employee.lastname')
@@ -351,8 +351,8 @@ class attendancecontroller extends Controller
 
         foreach($data as $key => $val){
             $id = $val->id;
-            $login_time = $val->subject;
-            $logout_time = $val->reason;
+            $subject = $val->subject;
+            $reason = $val->reason;
             $date = Carbon::parse($val->created_at)->format('d-m-Y');
 
             $emp = $val->staffid;
@@ -360,21 +360,23 @@ class attendancecontroller extends Controller
             $name .= $val->lastname;
 
             // $action = '<a class="dropdown-items text-success viewall" href="javascript:void(0);" style="float:left;" data-id="'.$id.'" ><i class="bi bi-eye" aria-hidden="true"></i></a>';
-            $action = '&nbsp;<a href="javascript:void(0);"  class="text-primary edit" data-id="'.$id.'"><i class="bi bi-pencil-square" aria-hidden="true"></i></a>';
-            $action .= '&nbsp;<a href="javascript:void(0);" class="text-danger delete" data-id="'.$id.'"><i class="bi bi-trash" aria-hidden="true" ></i></a>';
+            $action = '&nbsp;<a href="javascript:void(0);"  class="text-white btn btn-primary approve" data-id="'.$id.'">Approve</a>';
+            $action .= '&nbsp;<a href="javascript:void(0);" class="text-danger btn btn-primary reject" data-id="'.$id.'">Reject</a>';
 
             $data_arr[] = array(
               "id" => ++$start,
-              "login_time" => $login_time,
-              "logout_time" => $logout_time,
+              "subject" => $subject,
+              "reason" => $reason,
               "date"   => $date,
             //   "image"     => $image,
               "name"   => $name,
               "emp"   => $emp,
+              'action' => $action
             );
 
         }
 
+    
         $response = array(
             "draw" => intval($draw),
            "iTotalRecords" => $totalRecords,
@@ -386,6 +388,35 @@ class attendancecontroller extends Controller
         echo json_encode($response); 
 
     }
+
+    public function approvedleave(Request $request){
+        // dd($request->all());
+        $id = $request->id;
+
+        $leave = leave::where('id' , $id)->update(['status' => 1]);
+
+        if($leave){
+            return response()->json(['status' => 'success']);
+        }
+
+        return response()->json(['status' => 'success']);
+        
+    }
+
+    public function rejectleave(Request $request){
+
+        $id = $request->id;
+
+        $leave = leave::where('id' , $id)->update(['status' => 0]);
+
+        if($leave){
+            return response()->json(['status' => 'success']);
+        }
+
+        return response()->json(['status' => 'success']);
+
+    }
+
 
     public function admin_Allemployee(Request $request){
 

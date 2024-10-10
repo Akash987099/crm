@@ -38,6 +38,7 @@
                                 <th>#</th>
                                 <th>Subject</th>
                                 <th>Date</th>
+                                <th>Leave Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -223,6 +224,9 @@ ClassicEditor
                 },
                 {
                     data: 'date',
+                },
+                {
+                    data: 'status',
                 },
                 {
                     data: 'action',

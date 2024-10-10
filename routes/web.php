@@ -534,6 +534,8 @@ Route::post('admin/signup', [UserController::class, 'create_account']);
 Route::controller(attendancecontroller::class)->group(function(){
 
     Route::match(['get', 'post'], 'admin/leave/list/ajax', 'admin_leaveAjax')->name('admin_leaveAjax');
+    Route::match(['get' , 'post'] , 'approved-leave' , 'approvedleave')->name('approved-leave');
+    Route::match(['get' , 'post'] , 'reject-leave' , 'rejectleave')->name('reject-leave');
 
 });
 

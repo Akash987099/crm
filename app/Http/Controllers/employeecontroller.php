@@ -738,9 +738,9 @@ if ($validator->fails()) {
         $start_time = Carbon::createFromTime(9, 0, 0, 'Asia/Kolkata'); // 9:00 AM
         $end_time = Carbon::createFromTime(18, 0, 0, 'Asia/Kolkata'); // 6:00 PM
 
-        // if ($current_time->lt($start_time) || $current_time->gt($end_time)) {
-        //     return response()->json(['status' => "timeout", 'message' => 'Login is allowed only between 9 AM and 6 PM IST.']);
-        // }
+        if ($current_time->lt($start_time) || $current_time->gt($end_time)) {
+            return response()->json(['status' => "timeout", 'message' => 'Login is allowed only between 9 AM and 6 PM IST.']);
+        }
 
         $credentials = $request->only('email', 'password');
 

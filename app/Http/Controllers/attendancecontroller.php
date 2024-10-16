@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Crypt;
+use App\Models\frontend\Client;
 use App\Models\File;
 
 class attendancecontroller extends Controller
@@ -29,26 +31,26 @@ class attendancecontroller extends Controller
         // return "111111";
         // dd($request->all());
 
-        $rules = [ 
-            'name' => 'required,',
-            'phone' => 'required',
-            'email'        => 'required',
-            'dob'    => 'required',
-            'country'  => 'required',
-            'city'  => 'required',
-            'state' => 'required',
-            'address' => 'required',
-            'pincode' => 'required',
-            'doc' => 'required|mimes:pdf,doc,docx,jpg,png|max:2048', 
+        // $rules = [ 
+        //     'name' => 'required,',
+        //     'phone' => 'required',
+        //     'email'        => 'required',
+        //     'dob'    => 'required',
+        //     'country'  => 'required',
+        //     'city'  => 'required',
+        //     'state' => 'required',
+        //     'address' => 'required',
+        //     'pincode' => 'required',
+        //     'doc' => 'required|mimes:pdf,doc,docx,jpg,png|max:2048', 
 
 
-         ];
+        //  ];
     
-        $validator = Validator::make($request->all(), $rules);
+        // $validator = Validator::make($request->all(), $rules);
     
-        if ($validator->fails()) {
-            return response()->json(['status' => 'error', 'message' => $validator->errors()]);
-        }
+        // if ($validator->fails()) {
+        //     return response()->json(['status' => 'error', 'message' => $validator->errors()]);
+        // }
 
         $name = $request->name;
         $phone = $request->phone;
@@ -60,6 +62,7 @@ class attendancecontroller extends Controller
         $address = $request->address;
         $pincode = $request->pincode;
 
+        $imageName = "Null";
         if ($request->hasFile('doc')) {
             $image = $request->file('doc');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -84,6 +87,127 @@ class attendancecontroller extends Controller
         }
 
         return response()->json(['status' => 'error']);
+    }
+
+    public function hiringupdate(Request $request){
+
+        // dd($request->all());
+        $updateid = $request->updateid;
+
+        $name = $request->name;
+        $phone = $request->phone;
+        $email = $request->email;
+        $dob   = $request->dob;
+        $country = $request->country;
+        $city = $request->city;
+        $state = $request->state;
+        $address = $request->address;
+        $pincode = $request->pincode;
+
+        // $imageName = "Null";
+        // if ($request->hasFile('doc')) {
+        //     $image = $request->file('doc');
+        //     $imageName = time() . '.' . $image->getClientOriginalExtension();
+        //     $image->move(public_path('doc'), $imageName);
+        // }
+
+        $insert = DB::table('hiring')->where('id' , $updateid)->update([
+            'name' => $name,
+            'phone' => $phone,
+            'email' => $email,
+            'dob'  => $dob,
+            'country' => $country,
+            'city' => $city,
+            'state' => $state,
+            'address' => $address,
+            'pincode' => $pincode,
+            // 'documents' => $imageName,
+        ]);
+
+        if($insert){
+            return response()->json(['status' => 'success']);
+        }
+
+        return response()->json(['status' => 'error']);
+
+    }
+
+    public function hiringAjax(Request $request){
+
+        $draw = $request->get('draw');
+        $start = $request->get('start');
+        $length = $request->get('length');
+        $search_arr = $request->get('search');
+        $searchValue = $search_arr['value'];
+        $columnIndex_arr = $request->get('order');
+        $columnName_arr = $request->get('columns');
+        $order_arr = $request->get('order');
+        $columnIndex = $columnIndex_arr[0]['column']; 
+        $columnName = $columnName_arr[$columnIndex]['data'];
+        $columnSortOrder = $order_arr[0]['dir'];
+
+
+        $data = DB::table('hiring');;
+
+        $totalRecordswithFilter = $data->count();
+        $totalRecords = $totalRecordswithFilter;
+
+        $data_arr = array();
+
+        $list = $data->get();
+
+        foreach($list as $key => $val){
+
+            $id = $val->id;
+            $name = $val->name;
+
+            
+            $date = Carbon::parse($val->dob)->format('d-m-Y');
+
+            $action = '&nbsp;<a href="javascript:void(0);"  class="text-primary edit" data-id="'.$id.'"><i class="bi bi-pencil-square" aria-hidden="true"></i></a>';
+            $action .= '&nbsp;<a href="javascript:void(0);" class="text-danger delete" data-id="'.$id.'"><i class="bi bi-trash" aria-hidden="true" ></i></a>';
+
+            $data_arr[] = array(
+              "id" => ++$start,
+              'name' => $name,
+              'phone' => $val->phone,
+              'email' => $val->email,
+              "date"   => $date,
+              'address' => $val->address,
+              "action"     => $action,
+            );
+
+        }
+
+        $response = array(
+            "draw" => intval($draw),
+           "iTotalRecords" => $totalRecords,
+           "iTotalDisplayRecords" => $totalRecordswithFilter,
+           "aaData" => $data_arr,
+        );
+
+        // dd($response);
+        echo json_encode($response); 
+
+    }
+
+    public function hiringdelete(Request $request){
+
+        // dd($request->all());
+
+        $delete = $request->id;
+        $update = $request->update;
+
+        if($delete) {
+            $data = DB::table('hiring')->where('id' , $delete)->delete();
+        }
+
+        if($update){
+            $data = DB::table('hiring')->where('id' , $update)->first();
+        }
+
+        return response()->json(['status' => 'success' , 'data' => $data]);
+
     }
 
     public function manager_attendance(){

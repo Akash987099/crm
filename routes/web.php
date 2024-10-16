@@ -919,6 +919,9 @@ Route::prefix('manager')->middleware(['auth:manager'])->group(function () {
 
             Route::match(['get' , 'post'], 'hiring' , 'hiring')->name('hiring');
             Route::match(['get' , 'post'], 'hiring/save' , 'hiringSave')->name('hiring-save');
+            Route::match(['get' , 'post'], 'hiring/list' , 'hiringAjax')->name('hiringAjax');
+            Route::match(['get' , 'post'] , 'hiring/delete' , 'hiringdelete')->name('hiring-delete');
+            Route::match(['get' , 'post'] , 'hiring/update' , 'hiringupdate')->name('hiring-update');
     
         });
 

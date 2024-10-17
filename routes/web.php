@@ -60,6 +60,7 @@ use App\Http\Controllers\leavecontroller;
 use App\Http\Controllers\agentcontroller;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\PayrollController;
 
 
 /*
@@ -925,6 +926,13 @@ Route::prefix('manager')->middleware(['auth:manager'])->group(function () {
     
         });
 
+        Route::controller(PayrollController::class)->group(function(){
+
+            Route::match(['get' , 'post'] , 'pay' , 'pay')->name('pay');
+            Route::match(['get' , 'post'] , 'pay/Ajax' , 'payAjax')->name('payAjax');
+            Route::match(['get' , 'post'] , 'payamount' , 'payamount')->name('payamount');
+
+        });
 
         
 Route::controller(statusController::class)->group(function(){

@@ -181,7 +181,7 @@
             </li> --}}
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('coming-soon')}}">
+                <a class="nav-link collapsed" href="{{route('pay')}}">
                     <i class="bi bi-people-fill"></i>
                     <span>Payroll</span>
                 </a>

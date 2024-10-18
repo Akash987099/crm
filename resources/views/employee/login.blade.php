@@ -111,10 +111,10 @@ $setting = DB::table('settings')->select('*')->first();
                             </div>
 
                             <div class="credits">
-                            <a href="https://tewaribrothers.shop/crm/admin/login" class="text-decoration-underline p-1" href="">Admin</a>
-                            <a href="https://tewaribrothers.shop/crm/manager/login"  class="text-decoration-underline p-1" href="">Manager</a>
-                            <a href="https://tewaribrothers.shop/crm/manager/login"  class="text-decoration-underline p-1" href="">ZSM</a>
-                            <a href="https://tewaribrothers.shop/crm/employeeLogin"  class="text-decoration-underline p-1" href="">DM Login</a>
+                            <a href="https://snedutech.com/admin/login" class="text-decoration-underline p-1" href="">Admin</a>
+                            <a href="https://snedutech.com/manager/login"  class="text-decoration-underline p-1" href="">Manager</a>
+                            <a href="https://snedutech.com/manager/login"  class="text-decoration-underline p-1" href="">ZSM</a>
+                            <a href="https://snedutech.com/employeeLogin"  class="text-decoration-underline p-1" href="">DM Login</a>
                             </div>
 
 

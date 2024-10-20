@@ -1,245 +1,163 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Login Form</title>
-    <link href="{{asset('public/assets/img/favicon.png')}}" rel="icon">
-    <link href="{{asset('public/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <link href="{{asset('public/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-    <link href="{{asset('public/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/assets/vendor/quill/quill.snow.css')}}" rel="stylesheet">
-    <link href="{{asset('public/assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
-    <link href="{{asset('public/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
-    <link href="{{asset('public/assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
-    <link href="{{asset('public/assets/css/style.css')}}" rel="stylesheet">
+    <title>Admin Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
     
+
 <style>
-
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
-    
-    body{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: url('https://i.postimg.cc/XYjWrv36/dark-hexagonal-background-with-gradient-color_79603-1409.jpg') no-repeat;
-        background-size: cover;
-        background-position: center;
-    }
-    
-    .box{
-        position: relative;
-        width: 370px;
-        height: 450px;
-        background: #1c1c1c;
-        border-radius: 50px 5px;
-        overflow: hidden;
-    }
-    
-    .box::before{
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 370px;
-        height: 450px;
-        background: linear-gradient(60deg, transparent, #45f3ff, #45f3ff);
-        transform-origin: bottom right;
-        animation: animate 6s linear infinite;
-    }
-    
-    .box::after{
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 370px;
-        height: 450px;
-        background: linear-gradient(60deg, transparent, #d9138a, #d9138a);
-        transform-origin: bottom right;
-        animation: animate 6s linear infinite;
-        animation-delay: -3s;
-    }
-    
-    @keyframes animate{
-        0% { transform: rotate(0deg);}
-        100% { transform: rotate(360deg);}
-    }
-    
-    form{
-        position: absolute;
-        inset: 2px;
-        border-radius: 50px 5px;
-        background: #28292d;
-        z-index: 10;
-        padding: 30px 30px;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    h2{
-        color: #45f3ff;
-        font-size: 35px;
-        font-weight: 500;
-        text-align: center;
-    }
-    
-    .input-box{
-        position: relative;
-        width: 300px;
-        margin-top: 35px;
-    }
-    
-    .input-box input{
-        position: relative;
-        width: 100%;
-        padding: 20px 10px 10px;
-        background: transparent;
-        border: none;
-        outline: none;
-        color: #23242a;
-        font-size: 1em;
-        letter-spacing: .05em;
-        z-index: 10;
-    }
-    
-    input[type="submit"]{
-        font-size: 20px;
-        border: none;
-        outline: none;
-        background: #45f3ff;
-        padding: 5px;
-        margin-top: 40px;
-        border-radius: 90px;
-        font-weight: 600;
-        cursor: pointer;
-    }
-    
-    input[type="submit"]:active{
-        background: linear-gradient(90deg, #45f3ff, #d9138a);
-        opacity: .8;
-    }
-    
-    .input-box span{
-        position: absolute;
-        left: 0;
-        padding: 20px 10px 10px;
-        font-size: 1em;
-        color: #8f8f8f;
-        pointer-events: none;
-        letter-spacing: .05em;
-        transition: .5s;
-    }
-    
-    .input-box input:valid ~ span,
-    .input-box input:focus ~ span{
-        color: #45f3ff;
-        transform: translateX(-10px) translateY(-30px);
-        font-size: .75em;
-    }
-    
-    .input-box i{
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 2px;
-        background: rgb(69, 243, 255);
-        border-radius: 4px;
-        transition: .5s;
-        pointer-events: none;
-        z-index: 9;
-    }
-    
-    .input-box input:valid ~ i,
-    .input-box input:focus ~ i{
-        height: 44px;
-        background: rgba(69, 243, 255, .5);
-    }
-    
-    .links{
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .links a{
-        margin: 25px 0;
-        font-size: 1em;
-        color: #8f8f8f;
-        text-decoration: none;
-    }
-    
-    .links a:hover,
-    .links a:nth-child(2){
-        color: #45f3ff;
-    }
-    
-    .links a:nth-child(2):hover{
-        color: #d9138a;
-    }
-    
-    </style>
-
+    /* Global Styles */
+  body {
+      background-color: #7fb1e0;
+      font-family: 'Arial', sans-serif;
+  }
+  
+  /* Wrapper for the login section */
+  .login-wrapper {
+      max-width: 1200px;
+      margin: auto;
+  }
+  
+  /* Logo and banner adjustments */
+  .logo img {
+      max-width: 180px;
+  }
+  
+  .banner img {
+      max-width: 350px;
+  }
+  
+  .slogan {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+  }
+  
+  /* Form container styles */
+  .form-container {
+      max-width: 400px;
+      width: 100%;
+  }
+  
+  .form-label {
+      font-weight: bold;
+  }
+  
+  /* Footer Styles */
+  .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #f8f9fa;
+      padding: 10px 0;
+  }
+  
+  /* Background color and button adjustments */
+  .bg-blue {
+      background-color: #7fb1e0;
+  }
+  
+  .btn-primary {
+      background-color: #007bff;
+      border: none;
+  }
+  
+  /* Links styling */
+  .links .link {
+      color: #007bff;
+      text-decoration: none;
+      margin: 0 5px;
+  }
+  
+  .links .link:hover {
+      text-decoration: underline;
+  }
+  
+  /* Captcha Image */
+  .captcha img {
+      max-width: 100px;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 992px) {
+      .banner img {
+          display: none;
+      }
+      .login-wrapper {
+          max-width: 100%;
+          padding: 0 20px;
+      }
+  }
+  
+  </style>
 
 </head>
 <body>
 
-    {{-- @if(Session::has('success'))
-    <div class="alert alert-success bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-        {{Session::get('success')}}
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    @if(Session::has('faild'))
-    <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-        {{Session::get('faild')}}
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif --}}
-
-
-    <div class="box">
-        <form method="POST" id="loginpage" action="{{url('admin/login')}}">
-            @csrf
-            <div class="input-box">
-                <h2>Sign In</h2>
-                <input type="email" name="email" required>
-                <span>Email</span>
-                <div class="text-danger">@error('email') {{$message}} @enderror</div>
-                <i></i>
+    <div class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-blue">
+        <div class="row w-100 login-wrapper">
+            <!-- Left Side -->
+            <div class="col-lg-6 d-none d-lg-block bg-light p-5 text-center rounded">
+                <div class="logo mb-4">
+                    {{-- <img src="{{asset('public/assets/uploads/logo/1719429761.jpg')}}" alt="Logo" class="img-fluid"> --}}
+                </div>
+                <div class="banner mb-4">
+                    <img src="{{asset('public/assets/uploads/logo/1719429761.jpg')}}" alt="Email Image" class="img-fluid">
+                </div>
+                <h5 class="slogan">Aws Connect And Innovative Solutions</h5>
             </div>
-            <div class="input-box">
-                <input type="password" name="password" required>
-                <span>Enter Password</span>
-                <div class="text-danger">@error('password') {{$message}} @enderror</div>
-                <i></i>
+
+            <!-- Right Side - Login Form -->
+            <div class="col-lg-6 bg-white p-5 d-flex flex-column justify-content-center align-items-center rounded">
+                <div class="form-container">
+                    <h2 class="text-center mb-4 fw-bold">Login</h2>
+                    <form class="row g-3 needs-validation" method="POST" action="" id="loginpage">
+                        @csrf
+                        <div class="col-12">
+                            <label class="form-label">Email</label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                <input type="email" name="email" value="{{$logindata->email ?? ' '}}" class="form-control" required>
+                            </div>
+                            <div class="text-danger">@error('email') {{$message}} @enderror</div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password" value="{{$logindata->show_password ?? ''}}" class="form-control" required>
+                            <div class="text-danger">@error('password') {{$message}} @enderror</div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <p class="small mb-0"> <a href="{{route('ForgetPassword')}}">Forget Password</a></p>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100" type="submit">Login</button>
+                        </div>
+                        <div class="col-12">
+                            <!--<p class="small mb-0">Don't have account? <a href="{{url('admin/signup')}}">Create an account</a></p>-->
+                        </div>
+                    </form>
+                </div>
+
+                <div class="mt-4 text-center links">
+                    <a href="https://snedutech.com/admin/login" class="link" href="">Admin</a> |
+                    <a href="https://snedutech.com/manager/login"  class="link" href="">Manager</a> |
+                    <a href="https://snedutech.com/manager/login"  class="link" href="">ZSM</a> |
+                    <a href="https://snedutech.com/employeeLogin"  class="link" href="">DM Login</a>
+                </div>
             </div>
-            <input type="submit" value="Login">
-            {{-- <div class="links">
-                <a href="#">Forgot Password?</a>
-                <a href="#">Sign Up</a>
-            </div> --}}
-        </form>
+        </div>
     </div>
-</body>
 
 <script src="{{asset('public/assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
 <script src="{{asset('public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>

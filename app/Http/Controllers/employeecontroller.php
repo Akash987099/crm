@@ -732,6 +732,8 @@ if ($validator->fails()) {
     public function employeeLogins(Request $request)
     {
 
+        // dd($request->all());
+
         // $id = Crypt::decrypt($request->id);
 
         $current_time = Carbon::now()->setTimezone('Asia/Kolkata');

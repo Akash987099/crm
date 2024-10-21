@@ -98,7 +98,7 @@ class PayrollController extends Controller
             // $action = '<a class="dropdown-items text-success viewall" href="javascript:void(0);" style="float:left;" data-id="'.$id.'" ><i class="bi bi-eye" aria-hidden="true"></i></a>';
             // $action = '&nbsp;<a href="javascript:void(0);" class="text-primary pay" data-id="'.$id.'|'.$paysallery.'"><i class="bi bi-paypal" aria-hidden="true"></i></a>';
             $action .= '&nbsp;<a href="javascript:void(0);" class="text-danger hold" data-id="'.$id.'"><i class="bi bi-envelope" aria-hidden="true" ></i></a>';
-            $action .= '&nbsp;<a href="javascript:void(0);" class="text-success view" data-id="'.$id.'"><i class="bi bi-eye" aria-hidden="true" ></i></a>';
+            $action .= '&nbsp;<a href=" ' . route("amount-view" , ['id' => $id]) .'  " class="text-success view" data-id="'.$id.'"><i class="bi bi-eye" aria-hidden="true" ></i></a>';
 
             $data_arr[] = array(
               "id" => ++$start,
@@ -179,6 +179,20 @@ class PayrollController extends Controller
         } else {
             return response()->json(['status' => 'error', 'message' => 'Employee not found']);
         }
+
+    }
+
+    public function amountView(Request $request){
+
+        // dd($request->all());
+
+        $id = $request->id;
+
+        $employee = employee::where('id', $id)->first();
+
+        $amount_pay = DB::table('amount_pay')->where('employee_id' , $employee->id)->get();
+
+        return view('pages.amout-view' , compact('employee' , 'amount_pay'));
 
     }
 

@@ -68,35 +68,40 @@
     </div>
 </section>
   
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Capture Photo</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="dashboard">
-                    <select id="cameraSelect" class="form-control mb-2">
-                        <option value="user">Front Camera</option>
-                        <option value="environment">Back Camera</option>
-                    </select>
-                    <video id="video" autoplay style="width: 100%; height:100%;"></video>
-                    <canvas id="canvas" style="width: 100%; height:100%; display:none;"></canvas>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="capture" class="btn btn-secondary">Capture Photo</button>
-                <button id="recapture" style="display:none;" class="btn btn-secondary">Recapture Photo</button>
-                <button id="upload" style="display:none;" class="btn btn-secondary">Upload Photo</button>
-            </div>
-        </div>
+
+{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button> --}}
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="POST" id="holdsallary">
+
+            <input type="hidden" id="empid" name="empid">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Subject</label>
+            <input type="text" name="subject" class="form-control" id="recipient-name" required>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" name="message" id="message-text" required></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Send message</button>
+          </div>
+
+        </form>
+      </div>
+     
     </div>
+  </div>
 </div>
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -115,6 +120,65 @@
     
 
     $(document).ready(function(){
+
+        $('#holdsallary').on('submit', function(e){
+
+            e.preventDefault();
+            
+            var formData = $(this).serialize();
+
+            Swal.fire({
+            title: 'Confirm Submission',
+            text: 'Are you sure you want to Pay this Payment?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, submit!',
+            cancelButtonText: 'Cancel',
+          }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+
+                    url : "{{route('holdsallery')}}",
+                    type : "GET",
+                    data : formData,
+                    success: function(response) {
+
+if(response.status == "success"){
+
+ Swal.fire({
+                       title: 'Success!',
+                       text: 'Success!',
+                       icon: 'success',
+                       confirmButtonText: 'OK'
+                   }).then((result) => {
+                       if (result.isConfirmed) {
+                         
+                           window.location.reload();
+                       }
+                   });
+
+}
+
+                   if(response.status == "error"){
+
+                     Swal.fire({
+                   title: 'Error!',
+                   text: 'Mail Server Error!!.',
+                   icon: 'error',
+                   confirmButtonText: 'OK'
+               });
+
+                 }
+ 
+},
+
+                });
+
+            }
+          });
+
+        });
 
         var table = $('.dataTable').DataTable({
             processing: true,
@@ -169,10 +233,27 @@
         });
 
 
+        $('body').on('click' , '.hold' , function(){
+
+            var id = $(this).attr('data-id');
+
+            $('#empid').val(id);
+
+            // alert(id);
+
+            $('#exampleModal').modal('show');
+
+        });
+
+      
+
         $('body').on('click' , '.pay' , function(){
 
             // alert('Calling');
-            var id = $(this).attr('data-id');
+            let data = $(this).data('id');
+           let values = data.split('|');
+          let firstValue = values[0];
+          let secondValue = values[1];
 
             Swal.fire({
             title: 'Confirm Submission',
@@ -188,12 +269,37 @@
 
                     url : "{{route('payamount')}}",
                     type : "GET",
-                    data : {id : id},
-                    success : function(response){
+                    data : {firstValue : firstValue , secondValue : secondValue},
+                    success: function(response) {
 
-                        console.log(response);
+if(response.status == "success"){
 
-                    }
+ Swal.fire({
+                       title: 'Success!',
+                       text: 'Success!',
+                       icon: 'success',
+                       confirmButtonText: 'OK'
+                   }).then((result) => {
+                       if (result.isConfirmed) {
+                         
+                           window.location.reload();
+                       }
+                   });
+
+}
+
+                   if(response.status == "error"){
+
+                     Swal.fire({
+                   title: 'Error!',
+                   text: 'error.',
+                   icon: 'error',
+                   confirmButtonText: 'OK'
+               });
+
+                 }
+ 
+},
 
                 });
 

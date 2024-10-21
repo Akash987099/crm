@@ -932,6 +932,8 @@ Route::prefix('manager')->middleware(['auth:manager'])->group(function () {
             Route::match(['get' , 'post'] , 'pay/Ajax' , 'payAjax')->name('payAjax');
             Route::match(['get' , 'post'] , 'payamount' , 'payamount')->name('payamount');
 
+            Route::match(['get' , 'post'] , 'holdsallery' , 'holdsallery')->name('holdsallery');
+
         });
 
         

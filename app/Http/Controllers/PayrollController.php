@@ -87,8 +87,16 @@ class PayrollController extends Controller
             $sallery = $val->sallery ?? '0';
             $paysallery = $sallery * $total_attendance;
 
+            $status = DB::table('amount_pay')->where('employee_id' , $id)->whereMonth('created_at', $currentMonth)->whereYear('created_at', $currentYear)->first();
+
+            if($status){
+                $action = '&nbsp;<a href="javascript:void(0);" class="text-primary"><i class="bi bi-check-circle" aria-hidden="true"></i></a>';
+            }else{
+                $action = '&nbsp;<a href="javascript:void(0);" class="text-primary pay" data-id="'.$id.'|'.$paysallery.'"><i class="bi bi-paypal" aria-hidden="true"></i></a>';
+            }
+
             // $action = '<a class="dropdown-items text-success viewall" href="javascript:void(0);" style="float:left;" data-id="'.$id.'" ><i class="bi bi-eye" aria-hidden="true"></i></a>';
-            $action = '&nbsp;<a href="javascript:void(0);"  class="text-primary pay" data-id="'.$id.'"><i class="bi bi-paypal" aria-hidden="true"></i></a>';
+            // $action = '&nbsp;<a href="javascript:void(0);" class="text-primary pay" data-id="'.$id.'|'.$paysallery.'"><i class="bi bi-paypal" aria-hidden="true"></i></a>';
             $action .= '&nbsp;<a href="javascript:void(0);" class="text-danger hold" data-id="'.$id.'"><i class="bi bi-envelope" aria-hidden="true" ></i></a>';
             $action .= '&nbsp;<a href="javascript:void(0);" class="text-success view" data-id="'.$id.'"><i class="bi bi-eye" aria-hidden="true" ></i></a>';
 
@@ -121,14 +129,56 @@ class PayrollController extends Controller
 
         // dd($request->all());
 
-        $id = $request->id;
+        $firstValue = $request->firstValue;
+        $secondValue = $request->secondValue;
 
-        $employee = employee::where('id' , $id)->first();
+        $employee = employee::where('id' , $firstValue)->first();
 
-        // dd($employee);
+        $insert = DB::table('amount_pay')->insert([
 
+            'employee_id' => $firstValue,
+            'amount'      => $secondValue,
+
+        ]);
+
+        if($insert){
+            return response()->json(['status' => 'success']);
+        }
+           return response()->json(['status' => 'error']);
+       
+    }
+
+    public function holdsallery(Request $request){
+
+        // dd($request->all());
+
+        $empid = $request->empid;
+        $subject = $request->subject;
+        $message = $request->message;
         
-
+        $employee = employee::where('id', $empid)->first();
+        
+        if ($employee) {
+            $email = $employee->email;
+        
+            $subjectRecipient = $subject;
+            $messageRecipient = $message;
+        
+            try {
+                Mail::raw($messageRecipient, function ($mail) use ($email, $subjectRecipient) {
+                    $mail->to($email)->subject($subjectRecipient);
+                });
+        
+                return response()->json(['status' => 'success']);
+            } catch (\Exception $e) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ]);
+            }
+        } else {
+            return response()->json(['status' => 'error', 'message' => 'Employee not found']);
+        }
 
     }
 

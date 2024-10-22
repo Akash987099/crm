@@ -937,6 +937,15 @@ Route::prefix('manager')->middleware(['auth:manager'])->group(function () {
 
         });
 
+        Route::controller(App\Http\Controllers\TaskController::class)->group(function(){
+
+            Route::match(['get' , 'post'] , 'task' , 'task')->name('task');
+            Route::match(['get' , 'post'] , 'Addtask' , 'Addtask')->name('Addtask');
+            Route::match(['get' , 'post'] , 'taskAjax' , 'taskAjax')->name('taskAjax');
+            Route::match(['get' , 'post'] , 'Deletetask' , 'Deletetask')->name('Deletetask');
+
+        });
+
         
 Route::controller(statusController::class)->group(function(){
 

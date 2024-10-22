@@ -188,6 +188,13 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('task')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Task Management </span>
+                </a>
+            </li>   
+
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('coming-soon')}}">
                     <i class="bi bi-people-fill"></i>
                     <span>PERFORMANCE </span>
@@ -200,13 +207,6 @@
                     <span>Biometric Attendance </span>
                 </a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('coming-soon')}}">
-                    <i class="bi bi-people-fill"></i>
-                    <span>Task Management </span>
-                </a>
-            </li>   
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('coming-soon')}}">

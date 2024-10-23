@@ -109,126 +109,114 @@
                     </div>
                 </div>
 
-                {{-- <div class="col-xxl-4 col-xl-12">
-                    <div class="card info-card customers-card">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Follow Up Meeting
-                            </h5>
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-people"></i>
-                                </div>
-                                <div class="ps-3">
-                                   
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-
-                {{-- <div class="col-xxl-4 col-xl-12">
-                    <div class="card info-card customers-card">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Rejected Meeting
-                            </h5>
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle bg-danger text-white d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-person-x-fill"></i>
-                                </div>
-                                <div class="ps-3">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                {{-- <div class="col-xxl-4 col-xl-12">
-                    <div class="card info-card customers-card">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Meeting Close
-                            </h5>
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex bg-info text-white align-items-center justify-content-center">
-                                    <i class=" bi bi-person-check"></i>
-                                </div>
-                                <div class="ps-3">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
+               
 
             </div>
         </div>
-        <div class="col-4">
-            <div class="card top-selling overflow-auto">
-                <div class="filter">
-                    <!-- <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a> -->
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                        </li>
+        
+    </div>
+</section>
 
-                        <li><a class="dropdown-item" href="#">Today</a></li>
-                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>Your Task </h4>
+            <div class="card">
+                
+                <div class="card-body pb-0">
+
+                    @if(Session::has('success'))
+                    <div class="alert alert-danger bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                        {{Session::get('success')}}
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+
                 </div>
+                <div class="m-2">
 
-                {{-- <div class="card-body pb-0">
-                    <h5 class="card-title">Recent Leads &nbsp; <span> @php date_default_timezone_set('Asia/Kolkata'); echo date('d-m-Y H:i'); @endphp</span></h5>
 
-                    <table class="table table-borderless">
+                    <table id="dtBasicExample" class="table table-responsive dataTable" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Created Date</th>
-
+                                <th>#</th>
+                                <th>Task</th>
+                                <th>Target</th>
+                                <th>From date</th>
+                                <th>To date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                           
+
                         </tbody>
                     </table>
-                </div> --}}
+
+
+                </div>
+
             </div>
+
         </div>
     </div>
 </section>
-<!-- Basic Modal -->
 
-<div class="modal fade" id="basicModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Recent Leads Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close
-                </button>
-
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Basic Modal-->
-@endsection
-
-@push('footer-script')
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap.min.js"></script>
 
 <script>
+
+    $(document).ready(function(){
+
+        var table = $('.dataTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('emptask') }}",
+
+            dom: 'Blfrtip',
+            buttons: [{
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7]
+                    }
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                    }
+                },
+                {
+                    extend: 'excel',
+                }
+            ],
+
+            columns: [{
+                    data: 'id',
+                },
+                {
+                    data: 'task',
+                },
+                {
+                    data: 'target',
+                },
+                {
+                    data : 'fromdate',
+                },
+                {
+                    data : 'todate',
+                },
+                {
+                    data: 'action',
+                },
+                
+            ]
+
+        });
+
+    });
   
 </script>
-@endpush
+
+@endsection

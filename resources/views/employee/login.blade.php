@@ -216,7 +216,7 @@ icon: 'success',
 confirmButtonText: 'OK'
 }).then((result) => {
 if (result.isConfirmed) {
-window.location.href = "{{url('manager/deshboard')}}";
+window.location.href = "{{route('index')}}";
 }
 });
 

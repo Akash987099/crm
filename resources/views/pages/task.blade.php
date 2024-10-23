@@ -223,7 +223,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group m-2">
                                     <label>From Date<span class="text-danger">*</span></label>
-                                    <input type="date" id="fromdate" name="fromdate" class="form-control" value="" placeholder="" required>
+                                    <input type="date" id="fromdate" name="fromdate" class="form-control" value="" placeholder="">
                                     <span class="email-error" id="email-error">@error('Model') {{$message}} @enderror</span>
                                 </div>
                             </div>
@@ -231,7 +231,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group m-2">
                                     <label>Todate<span class="text-danger">*</span></label>
-                                    <input type="date" id="todate" name="todate" class="form-control" value="" placeholder="" required>
+                                    <input type="date" id="todate" name="todate" class="form-control" value="" placeholder="">
                                     <span class="email-error" id="email-error">@error('Model') {{$message}} @enderror</span>
                                 </div>
                             </div>
@@ -480,6 +480,67 @@ confirmButtonText: 'OK'
 });
 
 });
+
+$('#updateform').on('submit', function(e){
+
+e.preventDefault();
+
+var formData = $(this).serialize();
+
+Swal.fire({
+title: 'Confirm Submission',
+text: 'Are you sure you want to Pay this Payment?',
+icon: 'question',
+showCancelButton: true,
+confirmButtonText: 'Yes, submit!',
+cancelButtonText: 'Cancel',
+}).then((result) => {
+if (result.isConfirmed) {
+
+    $.ajax({
+
+        url : "{{route('updatetask')}}",
+        type : "GET",
+        data : formData,
+        success: function(response) {
+
+if(response.status == "success"){
+
+Swal.fire({
+           title: 'Success!',
+           text: 'Success!',
+           icon: 'success',
+           confirmButtonText: 'OK'
+       }).then((result) => {
+           if (result.isConfirmed) {
+             
+               window.location.reload();
+           }
+       });
+
+}
+
+       if(response.status == "error"){
+
+         Swal.fire({
+       title: 'Error!',
+       text: 'Mail Server Error!!.',
+       icon: 'error',
+       confirmButtonText: 'OK'
+   });
+
+     }
+
+},
+
+    });
+
+}
+});
+
+});
+
+
 
      });
 

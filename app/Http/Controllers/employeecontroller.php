@@ -732,17 +732,14 @@ if ($validator->fails()) {
     public function employeeLogins(Request $request)
     {
 
-        // dd($request->all());
+        
+        // $current_time = Carbon::now()->setTimezone('Asia/Kolkata');
+        // $start_time = Carbon::createFromTime(9, 0, 0, 'Asia/Kolkata'); // 9:00 AM
+        // $end_time = Carbon::createFromTime(18, 0, 0, 'Asia/Kolkata'); // 6:00 PM
 
-        // $id = Crypt::decrypt($request->id);
-
-        $current_time = Carbon::now()->setTimezone('Asia/Kolkata');
-        $start_time = Carbon::createFromTime(9, 0, 0, 'Asia/Kolkata'); // 9:00 AM
-        $end_time = Carbon::createFromTime(18, 0, 0, 'Asia/Kolkata'); // 6:00 PM
-
-        if ($current_time->lt($start_time) || $current_time->gt($end_time)) {
-            return response()->json(['status' => "timeout", 'message' => 'Login is allowed only between 9 AM and 6 PM IST.']);
-        }
+        // if ($current_time->lt($start_time) || $current_time->gt($end_time)) {
+        //     return response()->json(['status' => "timeout", 'message' => 'Login is allowed only between 9 AM and 6 PM IST.']);
+        // }
 
         $credentials = $request->only('email', 'password');
 
@@ -750,7 +747,9 @@ if ($validator->fails()) {
         
         if ($employee && $employee->check_status == 0) {
             if (Auth::guard('employee')->attempt($credentials)) {
-                return redirect()->route('index');
+
+                return response()->json(['status' => 'success']);
+                // return redirect()->route('index');
             } else {
                 return back()->withErrors(['password' => 'Invalid password']);
             }

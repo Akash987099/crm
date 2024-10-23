@@ -177,6 +177,7 @@ Route::controller(employeecontroller::class)->group(function(){
 Route::prefix('employee')->middleware(['auth:employee'])->group(function () {
 
     Route::controller(attendancecontroller::class)->group(function(){
+
     Route::match(['get', 'post'], 'employee/file/{parentId?}', 'employee_file')->name('employee_file');
     Route::post('employee/files/folder','EcreateFolder')->name('employee_file.createFolder');
     Route::post('employee/files/upload', 'EuploadFile')->name('employee_file.uploadFile');
@@ -198,13 +199,21 @@ Route::prefix('employee')->middleware(['auth:employee'])->group(function () {
 
 
     Route::controller(employeecontroller::class)->group(function(){
-
+// 
         Route::match(['get', 'post'], '/', 'index')->name('index');
         Route::match(['get', 'post'], '/employee-profile', 'employeeprofile')->name('employee-profile');
         Route::match(['get', 'post'], '/employee-profile/update', 'Eprofileupdate')->name('Eprofile-update');
        Route::match(['get', 'post'] , 'employee/logout', 'employeelogout')->name('employee.logout');
 
         // akash
+
+    });
+
+    Route::controller(App\Http\Controllers\TaskController::class)->group(function(){
+
+    Route::match(['get' , 'post'] , 'Employee/tak' , 'emptask')->name('emptask');
+    Route::match(['get' , 'post'] , 'emp-report' , 'empreport')->name('emp-report');
+    Route::match(['get' , 'post'] , 'Addtaskreport' , 'Addtaskreport')->name('Addtaskreport');
 
     });
 
@@ -943,6 +952,7 @@ Route::prefix('manager')->middleware(['auth:manager'])->group(function () {
             Route::match(['get' , 'post'] , 'Addtask' , 'Addtask')->name('Addtask');
             Route::match(['get' , 'post'] , 'taskAjax' , 'taskAjax')->name('taskAjax');
             Route::match(['get' , 'post'] , 'Deletetask' , 'Deletetask')->name('Deletetask');
+            Route::match(['get' , 'post'] , 'updatetask' , 'updatetask')->name('updatetask');
 
         });
 

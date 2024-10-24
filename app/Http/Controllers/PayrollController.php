@@ -132,12 +132,19 @@ class PayrollController extends Controller
         $firstValue = $request->firstValue;
         $secondValue = $request->secondValue;
 
+        $pfms = $request->pfms;
+        $profession = $request->profession;
+        $extra = $request->extra;
+
         $employee = employee::where('id' , $firstValue)->first();
 
         $insert = DB::table('amount_pay')->insert([
 
             'employee_id' => $firstValue,
             'amount'      => $secondValue,
+            'pfms'   => $pfms,
+            'profession' => $profession,
+            'extra'  => $extra
 
         ]);
 

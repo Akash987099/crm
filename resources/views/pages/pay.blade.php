@@ -103,6 +103,48 @@
   </div>
 </div>
 
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Pay Sallary</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="POST" id="paysallary">
+            @csrf
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">PFMS</label>
+            <input type="text" name="pfms" class="form-control" id="recipient-name" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Profession</label>
+            <input type="text" name="profession" class="form-control" id="recipient-name" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Extra</label>
+            <input type="text" name="extra" class="form-control" id="recipient-name" required>
+          </div>
+
+          {{-- <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name" required>
+          </div> --}}
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Send message</button>
+          </div>
+
+        </form>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
@@ -245,68 +287,78 @@ if(response.status == "success"){
 
         });
 
-      
+        $('body').on('click', '.pay', function() {
+    // Capture data from the clicked .pay button
+    let data = $(this).data('id');
+    let values = data.split('|');
+    let firstValue = values[0];
+    let secondValue = values[1];
 
-        $('body').on('click' , '.pay' , function(){
+    // Show the modal
+    $('#exampleModal1').modal('show');
 
-            // alert('Calling');
-            let data = $(this).data('id');
-           let values = data.split('|');
-          let firstValue = values[0];
-          let secondValue = values[1];
+    // Handle form submission
+    $('#paysallary').off('submit').on('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission
 
-            Swal.fire({
+        // Serialize form data and convert to object
+        var formData = $(this).serializeArray();
+        
+        // Append firstValue and secondValue to formData
+        formData.push({name: 'firstValue', value: firstValue});
+        formData.push({name: 'secondValue', value: secondValue});
+
+        // Show confirmation using SweetAlert
+        Swal.fire({
             title: 'Confirm Submission',
             text: 'Are you sure you want to Pay this Payment?',
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Yes, submit!',
             cancelButtonText: 'Cancel',
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-
+                // Send AJAX request with form data including firstValue and secondValue
                 $.ajax({
-
-                    url : "{{route('payamount')}}",
-                    type : "GET",
-                    data : {firstValue : firstValue , secondValue : secondValue},
+                    url: "{{ route('payamount') }}",
+                    type: "GET", // Change to POST if necessary
+                    data: formData, // Include the serialized form data with appended values
                     success: function(response) {
-
-if(response.status == "success"){
-
- Swal.fire({
-                       title: 'Success!',
-                       text: 'Success!',
-                       icon: 'success',
-                       confirmButtonText: 'OK'
-                   }).then((result) => {
-                       if (result.isConfirmed) {
-                         
-                           window.location.reload();
-                       }
-                   });
-
-}
-
-                   if(response.status == "error"){
-
-                     Swal.fire({
-                   title: 'Error!',
-                   text: 'error.',
-                   icon: 'error',
-                   confirmButtonText: 'OK'
-               });
-
-                 }
- 
-},
-
+                        if (response.status == "success") {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Payment successful!',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.reload(); // Reload page on success
+                                }
+                            });
+                        } else if (response.status == "error") {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'There was an error processing the payment.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An error occurred. Please try again.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
                 });
-
             }
-          });
-
         });
+    });
+});
+
+
 
     });
 

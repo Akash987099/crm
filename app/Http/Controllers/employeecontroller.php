@@ -258,6 +258,7 @@ if ($validator->fails()) {
             'email' => 'required|unique:employee,email',
             'aadharcard' => 'required|unique:employee,aadhar',
             'pan' => 'required|unique:employee,pancard',
+            'employee_type' => 'required',
         ],
         [
             'aadharcard.unique' => 'The Aadhar Card number has already been taken.',
@@ -320,6 +321,8 @@ if ($validator->fails()) {
             'pandoc'   => $pancard,
             'bankdoc'  => $passbook,
             'checkbook' => $checkbook,
+
+            'user_type' => $request->employee_type
 
 
 
@@ -504,6 +507,12 @@ if ($validator->fails()) {
                     ->orwhere('employee.staffid' , 'like', '%' . $searchValue . '%')
                     ->orwhere('employee.phone' , 'like', '%' . $searchValue . '%');
             });
+        }
+
+        if($request->userdata != NULL){
+
+            $data->where('employee.user_type' , $request->userdata);
+
         }
 
         $totalRecordswithFilter = $data->count();

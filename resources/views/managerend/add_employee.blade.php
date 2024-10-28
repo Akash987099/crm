@@ -49,6 +49,19 @@
                                     <span class="text-danger">@error('lastname') {{$message}} @enderror</span>
                                 </div>
                             </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group m-2">
+                                    <label>Select Employee <span class="text-danger">*</span></label>
+                                  <select name="employee_type" id="" class="form-control">
+                                    <option value="">Select Employee</option>
+                                    <option value="1">Agent</option>
+                                    <option value="2">Distributor</option>
+                                  </select>
+                                    <span class="text-danger">@error('employee_type') {{$message}} @enderror</span>
+                                </div>
+                            </div>
+
                             <div class="col-lg-6">
                                 <div class="form-group m-2">
                                     <label>Staff Id <span class="text-danger">*</span></label>

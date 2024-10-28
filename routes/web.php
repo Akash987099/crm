@@ -956,6 +956,19 @@ Route::prefix('manager')->middleware(['auth:manager'])->group(function () {
 
         });
 
+        Route::controller(App\Http\Controllers\FileController::class)->group(function(){
+
+            Route::match(['get' , 'post'] , 'file-manege/{parentId?}' , 'fileMange')->name('file-manage');
+
+           Route::post('manager/file/folders','filecreateFolder')->name('manager.createFolder');
+           Route::post('manager/files/upload', 'MuploadFile')->name('manager_file.uploadFile');
+        //   Route::delete('employee/files/{id}',  'EdeleteFile')->name('employee_file.deleteFile');
+
+          Route::get('manager/files/views',  'manager_file_view')->name('manager_file_view');
+
+
+        });
+
         
 Route::controller(statusController::class)->group(function(){
 

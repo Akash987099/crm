@@ -50,6 +50,27 @@
                 </div>
                 <div class="m-2">
 
+                    
+
+                    <div class="card-body pb-0">
+                        <div class="row">
+                       <div class="form-group col-4">
+
+                    <label for="">Select User</label>
+                  <select name="" id="userdata" class="form-control">
+                    <option value="">Select User</option>
+                    <option value="1">Employee</option>
+                    <option value="2">Distributor</option>
+                  </select>
+                       </div>
+    
+                    </div>
+
+                </div>
+
+                    <br>
+                    <hr>
+
 
                     <table id="dtBasicExample" class="table table-responsive dataTable" cellspacing="0" width="100%">
                         <thead>
@@ -416,14 +437,21 @@ if (response.status == 'error') {
         });
 
 });
-
+// userdata
 
     $(function() {
         var i = 1;
         var table = $('.dataTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('view-employee') }}",
+            // ajax: "{{ route('view-employee') }}",
+            ajax: {
+        url: "{{ route('view-employee') }}",
+        type: "GET", 
+        data: function (d) {
+            d.userdata = $('#userdata').val();
+        }
+    },
 
             dom: 'Blfrtip',
             buttons: [{
@@ -470,7 +498,16 @@ if (response.status == 'error') {
                 // },
             ]
         });
+
+        $('#userdata').on('change', function() {
+        // alert('Calling');
+    table.ajax.reload(); 
+});
+
     });
+
+   
+
 
     $('body').on('click' , '.delete' , function(){
         var id = $(this).attr('data-id');
@@ -539,33 +576,6 @@ if (response.status == 'error') {
 
     //////////////////////////////////////////////////////////////////////
 
-    $(document).on('click', '.marketing', function() {
-        var dataId = $(this).attr("data-id");
-        $.ajax({
-            type: 'POST',
-            url: "{{url('manager/view-details-market-mteam')}}",
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "id": dataId
-            },
-            success: function(response) {
-                $("#basicModal").modal('show');
-                $(".firstname").text(response.data.firstname);
-                $(".lastname").text(response.data.lastname);
-                $(".email").text(response.data.email);
-                $(".phone").text(response.data.phone);
-                $(".joining_date").text(response.data.joining_date);
-                $(".address").text(response.data.address);
-                $(".city").text(response.data.city);
-                $(".pincode").text(response.data.pincode);
-                $(".state").text(response.data.state);
-                $(".staffid").text(response.data.staff_id);
-                $(".staff_role").text(response.data.staff_role);
-                $(".created_date").text(response.data.created_date);
-
-            }
-        });
-
-    });
+  
 </script>
 @endpush

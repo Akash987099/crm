@@ -15,7 +15,7 @@ class Employee extends Authenticatable
         'id', 'firstname', 'lastname', 'staffid', 'designation_id', 'email', 'phone', 
         'joiningdate', 'city', 'pincode', 'address', 'password', 'state', 'image', 
         'aadhar', 'pancard', 'aadhardoc', 'pandoc', 'bank', 'bankacc', 'ifsc', 
-        'bankdoc', 'checkbook', 'created_at', 'updated_at', 'status' , 'check_status'
+        'bankdoc', 'checkbook', 'created_at', 'updated_at', 'status' , 'check_status' , 'user_type'
     ];
 
     // Add the hidden property to hide sensitive fields

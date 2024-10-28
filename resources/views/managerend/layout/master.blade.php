@@ -140,6 +140,13 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('manager-employee')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Distributor</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('manager_attendance')}}">
                     <i class="bi bi-people-fill"></i>
                     <span>Attendance</span>
@@ -166,6 +173,13 @@
                     <span>Accest Tracker</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('file-manage')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>File Management </span>
+                </a>
+            </li>  
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{url('manager/view-tele-team')}}">

@@ -54,11 +54,11 @@
 
                                     <div class="card" style="width: 18rem;">
                                         {{-- <img class="card-img-top" src="..." alt="Card image cap"> --}}
-                                        <iframe src="{{asset('storage/app/public/'.{{$val->path}})}}" frameborder="0" class="card-img-top"></iframe>
+                                        <iframe src="{{asset('storage/app/public/')}}/{{$val->path}}" frameborder="0" class="card-img-top"></iframe>
                                         <div class="card-body">
                                           {{-- <h5 class="card-title">Card title</h5>
                                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
-                                          <a href="{{asset('storage/app/public/'.{{$val->path}})}}" class="btn btn-primary btn-sm">Click here</a> 
+                                          <a href="{{asset('storage/app/public/')}}/{{$val->path}}" class="btn btn-primary btn-sm">Click here</a> 
                                         </div>
                                       </div>
 

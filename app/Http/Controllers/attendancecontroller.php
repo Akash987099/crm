@@ -729,7 +729,7 @@ class attendancecontroller extends Controller
         $parent_id = $request->parent_id;
 
         $request->validate([
-            'file' => 'required|mimes:jpeg,png,bmp,gif,svg,webp,pdf',
+            'file' => 'required',
              'parent_id' => 'required',
         ]);
     
@@ -782,7 +782,7 @@ class attendancecontroller extends Controller
         $parent_id = $request->parent_id;
 
         $request->validate([
-            'file' => 'required|mimes:jpeg,png,bmp,gif,svg,webp,pdf',
+            'file' => 'required',
              'parent_id' => 'required',
         ]);
     

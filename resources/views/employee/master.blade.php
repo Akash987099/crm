@@ -78,43 +78,6 @@
 </ul>
 </nav>
 
-<!-- <nav class="header-nav ms-auto">
-    <ul class="d-flex align-items-end">
-
-                
-
-
-        <li class="align-items-end">
-            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-               
-                <i class="bi bi-bell" aria-hidden="true"></i>
-                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end mailbox animated bounceInDown">
-                <ul id="messageList">
-                    <li>
-                        <div class="drop-title">Notifications</div>
-                    </li>
-
-                    <li>
-                        <div class="message-center ps ps--theme_default" data-ps-id="5c1f353f-e42f-b76f-b7a7-87d36dad2cc2">
-                            <a href="javascript:void(0)">
-                                <div class="btn btn-danger btn-circle text-white"><i class="fa fa-link"></i></div>
-                                <div class="mail-contnet">
-                                    <h5 class="time">9:30</h5> <span class="mail-desc">Just see the my new admin!</span>  </div>
-                            </a>
-                        <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
-                    </li>
-
-                    <li>
-                        <a class="nav-link text-center link" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-
-    </ul>
-</nav> -->
 
 
 
@@ -237,6 +200,7 @@
 
             
             <hr>
+
 
             @if (ViewPermission(1))
             <li class="nav-item">

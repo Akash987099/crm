@@ -259,6 +259,13 @@
                 </a>
             </li> 
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('account-manager')}}">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Account Manager</span>
+                </a>
+            </li>
+
             <hr>
            
             <li class="nav-heading">Meeting Details</li>
@@ -312,6 +319,7 @@
                     <i class="bi bi-file-earmark-check-fill"></i> <span> Total Meetings Report</span>
                 </a>
             </li>
+
         </ul>
         
         @endif
@@ -368,6 +376,12 @@
         </li>
             
         @endif
+
+          {{-- @if(Auth::guard('manager')->user()->user_type == 3) --}}
+
+       
+            
+        {{-- @endif --}}
 
     </aside>
 

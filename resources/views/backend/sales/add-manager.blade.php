@@ -70,8 +70,9 @@
                                     {{-- <span class="text-danger">@error('employment_type') {{$message}} @enderror</span> --}}
 
                                     <select name="user_type" id="" class="form-control">
-                                        <option value="1">Mnager</option>
+                                        <option value="1">Manager</option>
                                         <option value="2">ZSM</option>
+                                        <option value="3">Account Manager</option>
                                     </select>
                                     <span class="text-danger">@error('user_type') {{$message}} @enderror</span>
                                 </div>

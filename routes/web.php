@@ -1015,6 +1015,9 @@ Route::controller(employeecontroller::class)->group(function(){
 
     Route::match(['get', 'post'], '/employees/change/status', 'manageremployeechangeStatus')->name('manager-employee-changeStatus');
 
+    Route::match(['get' , 'post'] , 'account-manager' , 'accountManager')->name('account-manager');
+    Route::match(['get' , 'post'] , 'account-view' , 'accountview')->name('account-view');
+
 
 
 });

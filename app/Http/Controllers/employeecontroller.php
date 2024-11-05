@@ -939,4 +939,61 @@ if ($validator->fails()) {
 
     }
 
+    public function accountManager(Request $request){
+
+        return view('managerend.account-manager');
+
+    }
+
+    public function accountview(Request $request){
+
+        $draw = $request->get('draw');
+        $start = $request->get('start');
+        $length = $request->get('length');
+        $search_arr = $request->get('search');
+        $searchValue = $search_arr['value'];
+        $columnIndex_arr = $request->get('order');
+        $columnName_arr = $request->get('columns');
+        $order_arr = $request->get('order');
+        $columnIndex = $columnIndex_arr[0]['column']; 
+        $columnName = $columnName_arr[$columnIndex]['data'];
+        $columnSortOrder = $order_arr[0]['dir'];
+
+
+        $data = DB::table('product');
+
+        if ($searchValue != null) {
+            $data->where(function($query) use ($searchValue) {
+                $query->where('name', 'like', '%' . $searchValue . '%');
+            });
+        }
+
+        $totalRecordswithFilter = $data->count();
+        $totalRecords = $totalRecordswithFilter;
+
+        $data = $data->get();
+        $data_arr = array();
+        
+
+        foreach($data as $key => $val){
+            $id = $val->id;
+            $name = $val->name;
+            
+            $data_arr[] = array(
+              "id" => ++$start,
+              "name" => $name,
+              "action" => $action,
+            );
+
+        }
+
+        $response = array(
+            "draw" => intval($draw),
+           "iTotalRecords" => $totalRecords,
+           "iTotalDisplayRecords" => $totalRecordswithFilter,
+           "aaData" => $data_arr,
+        );
+
+    }
+
 }

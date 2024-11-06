@@ -248,22 +248,22 @@ if ($validator->fails()) {
 
         $directory = 'documents/' . $staff_id;
 
-        // $request->validate([
-        //     // 'firstname' => 'required',
-        //     // 'Sallery' => 'required',
-        //     // 'CTC' => 'required',
-        //     // 'staff_id' => 'required',
-        //     // 'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
-        //     // 'phone' => 'required|unique:employee,phone',
-        //     // 'email' => 'required|unique:employee,email',
-        //     // 'aadharcard' => 'required|unique:employee,aadhar',
-        //     // 'pan' => 'required|unique:employee,pancard',
-        //     // 'employee_type' => 'required',
-        // ],
-        // [
-        //     'aadharcard.unique' => 'The Aadhar Card number has already been taken.',
-        //     'pan.unique' => 'The PAN number has already been taken.',
-        // ]);
+        $request->validate([
+            'firstname' => 'required',
+            'Sallery' => 'required',
+            'CTC' => 'required',
+            'staff_id' => 'required',
+            // 'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
+            // 'phone' => 'required|unique:employee,phone',
+            'email' => 'required|unique:employee,email',
+            'aadharcard' => 'required|unique:employee,aadhar',
+            'pan' => 'required|unique:employee,pancard',
+            'employee_type' => 'required',
+        ],
+        [
+            'aadharcard.unique' => 'The Aadhar Card number has already been taken.',
+            'pan.unique' => 'The PAN number has already been taken.',
+        ]);
 
         // return "1111";
 
@@ -321,9 +321,6 @@ if ($validator->fails()) {
             'pandoc'   => $pancard,
             'bankdoc'  => $passbook,
             'checkbook' => $checkbook,
-
-            // 'user_type' => $request->employee_type
-
 
 
         ];

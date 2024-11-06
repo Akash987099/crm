@@ -5,7 +5,7 @@
 <div class="pagetitle">
     <div class="row">
         <div class="col-lg-9">
-            <h1>Add Agent</h1>
+            <h1>View Files</h1>
         </div>
         <div class="col-lg-3">
             <nav>

@@ -44,12 +44,11 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Date</th>
-                                <th>Description</th>
-                                <th>Debit</th>
-                                <th>Credit</th>
-                                <th>Dr or Cr</th>
-                                <th>Closing Balanace</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>CTC</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -129,7 +128,7 @@
         var table = $('.dataTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('assest-viewDevice') }}",
+            ajax: "{{ route('account-view') }}",
             // ajax: "{{ route('account-view') }}",
 
             dom: 'Blfrtip',
@@ -154,22 +153,19 @@
                     data: 'id',
                 },
                 {
-                    data: 'employee',
-                },
-                {
-                    data: 'asset_id',
-                },
-                {
                     data: 'name',
                 },
                 {
-                    data: 'modal',
+                    data: 'email',
                 },
                 {
-                    data: 'serial',
+                    data: 'phone',
                 },
                 {
-                    data: 'category',
+                    data: 'ctc',
+                },
+                {
+                    data: 'action',
                 },
                 
             ]

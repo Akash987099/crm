@@ -958,11 +958,12 @@ if ($validator->fails()) {
         $columnSortOrder = $order_arr[0]['dir'];
 
 
-        $data = DB::table('product');
+        $data = DB::table('employee');
 
+       
         if ($searchValue != null) {
             $data->where(function($query) use ($searchValue) {
-                $query->where('name', 'like', '%' . $searchValue . '%');
+                $query->where('firstname', 'like', '%' . $searchValue . '%');
             });
         }
 
@@ -972,14 +973,20 @@ if ($validator->fails()) {
         $data = $data->get();
         $data_arr = array();
         
-
+        // dd($data);
         foreach($data as $key => $val){
             $id = $val->id;
-            $name = $val->name;
+            $name = $val->firstname;
+            $name .= ' ' .$val->lastname;
+
+            $action = '<a class="dropdown-items text-success viewall" href=" ' . route('account-details' , ['id' => $id]) .' " style="float:left;" data-id="'.$id.'" ><i class="bi bi-eye" aria-hidden="true"></i></a>';
             
             $data_arr[] = array(
               "id" => ++$start,
               "name" => $name,
+              'email' => $val->email,
+              'phone' => $val->phone,
+              'ctc'  => $val->ctc,
               "action" => $action,
             );
 
@@ -991,6 +998,16 @@ if ($validator->fails()) {
            "iTotalDisplayRecords" => $totalRecordswithFilter,
            "aaData" => $data_arr,
         );
+
+        echo json_encode($response); 
+
+    }
+
+    public function accountdetails(Request $request){
+
+        // return response()->json(['status' => 'pending']);
+
+        return view('managerend.account-details');
 
     }
 

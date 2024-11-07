@@ -259,13 +259,6 @@
                 </a>
             </li> 
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('account-manager')}}">
-                    <i class="bi bi-people-fill"></i>
-                    <span>Account Manager</span>
-                </a>
-            </li>
-
             <hr>
            
             <li class="nav-heading">Meeting Details</li>
@@ -322,6 +315,17 @@
 
         </ul>
         
+        @endif
+
+        @if(Auth::guard('manager')->user()->user_type == 3)
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('account-manager')}}">
+                <i class="bi bi-people-fill"></i>
+                <span>Account Manager</span>
+            </a>
+        </li>
+
         @endif
 
         @if(Auth::guard('manager')->user()->user_type == 2)

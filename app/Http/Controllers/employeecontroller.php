@@ -1007,7 +1007,21 @@ if ($validator->fails()) {
 
         // return response()->json(['status' => 'pending']);
 
-        return view('managerend.account-details');
+        // dd($request->all());
+
+        $id = $request->id;
+
+        $employee = employee::where('id' , $id)->first();
+        $amount_pay = DB::table('amount_pay')->where('employee_id' , $id)->get();
+        $pfms = DB::table('amount_pay')->where('employee_id' , $id)->sum('pfms');
+        $profession = DB::table('amount_pay')->where('employee_id' , $id)->sum('profession');
+        $extra = DB::table('amount_pay')->where('employee_id' , $id)->sum('extra');
+        $amount = DB::table('amount_pay')->where('employee_id' , $id)->sum('amount');
+
+        $totalamount = $pfms + $profession + $extra + $amount ;
+
+
+        return view('managerend.account-details' , compact('employee' , 'totalamount' , 'amount_pay'));
 
     }
 

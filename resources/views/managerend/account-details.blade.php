@@ -27,12 +27,12 @@
     
     <div class="row mt-3">
         <div class="col-md-6">
-            <strong>Company Name:</strong> <br>
-            <strong>Address:</strong>
+            <strong>Company Name / Employee Name :  {{$employee->firstname ?? ''}} {{$employee->lastname ?? ''}}</strong> <br>
+            <strong>Address: {{ $employee->address ?? ''}}</strong>
         </div>
         <div class="col-md-6">
-            <strong>Phone No.:</strong> <br>
-            <strong>Email ID:</strong>
+            <strong>Phone No.: {{$employee->phone ?? ''}}</strong> <br>
+            <strong>Email ID: {{$employee->email ?? ''}}</strong>
         </div>
     </div>
     
@@ -65,31 +65,30 @@
         <tbody>
             <tr>
                 <td colspan="5" class="text-right font-weight-bold">Opening Balance</td>
-                <td>100000</td>
+                <td>{{$employee->ctc ?? ''}}</td>
             </tr>
+
+            @foreach ($amount_pay as $key => $val)
+                
+           
             <tr>
-                <td>03/01/23</td>
-                <td>ABCD-001</td>
-                <td>50000</td>
+                <td>{{$val->created_at}}</td>
+                <td>-</td>
+                <td>{{$val->amount}}</td>
                 <td></td>
                 <td>Dr</td>
-                <td>150000</td>
+                <td>{{$val->amount}}</td>
             </tr>
-            <tr>
-                <td>03/02/23</td>
-                <td>Cash-002</td>
-                <td></td>
-                <td>45000</td>
-                <td>Cr</td>
-                <td>105000</td>
-            </tr>
+
+            @endforeach
+           
             <!-- Add more rows as needed -->
             <tr>
                 <td colspan="2" class="font-weight-bold text-right">Total</td>
-                <td>205000</td>
-                <td>118000</td>
+                <td>0</td>
+                <td>0</td>
                 <td></td>
-                <td>187000</td>
+                <td>{{$totalamount}}</td>
             </tr>
         </tbody>
     </table>

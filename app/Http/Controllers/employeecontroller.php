@@ -387,14 +387,14 @@ if ($validator->fails()) {
 
         $directory = 'documents/' . $staff_id;
 
-        $request->validate([
-            'firstname' => 'required',
-            'Sallery' => 'required',
-            'CTC' => 'required',
-            'staff_id' => 'required',
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
-            'email' => 'required',
-        ]);
+        // $request->validate([
+        //     'firstname' => 'required',
+        //     'Sallery' => 'required',
+        //     'CTC' => 'required',
+        //     'staff_id' => 'required',
+        //     'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|digits:10',
+        //     'email' => 'required',
+        // ]);
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

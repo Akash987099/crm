@@ -925,6 +925,8 @@ Route::prefix('manager')->middleware(['auth:manager'])->group(function () {
         //     return view('managerend.manager-desh');
         // });
 
+        Route::get('manager/leads/client', [Admin_client_controller::class, 'manager_leads'])->name('manager.leads');
+
         Route::controller(attendancecontroller::class)->group(function(){
 
             Route::match(['get' , 'post'], 'hiring' , 'hiring')->name('hiring');

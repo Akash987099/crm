@@ -283,7 +283,7 @@
             </li> --}}
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('backend.leads')}}">
+                <a class="nav-link collapsed" href="{{route('manager.leads')}}">
                     <i class="bi bi-people-fill"></i>
                     <span>Lead</span>
                 </a>
@@ -352,7 +352,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('backend.leads')}}">
+            <a class="nav-link collapsed" href="{{route('manager.leads')}}">
                 <i class="bi bi-people-fill"></i>
                 <span>Lead</span>
             </a>

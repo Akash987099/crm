@@ -69,9 +69,9 @@ class Admin_client_controller extends Controller
         return view('backend.lead');
     }
 
-    public function backend_leads(Request $request){
-        // return view('managerend.lead');
-        return view('backend.lead');
+    public function manager_leads(Request $request){
+        return view('managerend.lead');
+        // return view('backend.lead');
     }
 
     public function viewlistlead(Request $request){

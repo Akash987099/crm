@@ -66,6 +66,66 @@
 </section>
 <!-- Basic Modal -->
 
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body pb-0">
+
+                    @if(Session::has('success'))
+                    <div class="alert alert-danger bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                        {{Session::get('success')}}
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+
+                </div>
+                <div class="m-2">
+
+
+                    <table id="dtBasicExample" class="table table-responsive" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Debit</th>
+                                <th>Creadit</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @php
+                                $count = 1 ;
+                            @endphp
+                            @foreach ($data as $key => $val)
+
+                            <tr>
+                                <td>{{$count++}}</td>
+                                <td>{{$val->firstname}} {{$val->lastname}}</td>
+                                <td>{{$val->debit}}</td>
+                                <td>{{$val->creadit}}</td>
+                                <td>{{$val->status}}</td>
+                                <td>{{$val->total}}</td>
+                                <td>Coming Soon....</td>
+                            </tr>
+                                
+                            @endforeach
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <div class="modal fade" id="basicModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">

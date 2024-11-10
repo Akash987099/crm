@@ -786,6 +786,33 @@ if ($validator->fails()) {
         return view('employee.index' , compact('leave' , 'lead' , 'agent'));
     }
   
+    public function AddAccount(Request $request){
+
+        // dd($request->all());
+
+        $id = $request->id;
+        $debit = $request->debit;
+        $creadit = $request->creadit;
+        $status = $request->status;
+        $total  = $request->total;
+        $description = $request->description;
+
+        $data = [
+
+            'emp_id' => $id,
+            'debit' => $debit,
+            'creadit' => $creadit,
+            'status' => $status,
+            'total' => $total,
+            'description' => $description
+
+        ];
+
+        $insert = DB::table('account_manage')->insert($data);
+
+        return response()->json(['status' => 'success']);
+
+    }
 
     //  agent start
 
@@ -939,7 +966,9 @@ if ($validator->fails()) {
 
     public function accountManager(Request $request){
 
-        return view('managerend.account-manager');
+        $data = DB::table('account_manage')->join('employee' , 'account_manage.emp_id' , '=' , 'employee.id')->get();
+
+        return view('managerend.account-manager' , compact('data'));
 
     }
 

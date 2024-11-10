@@ -926,6 +926,7 @@ Route::prefix('manager')->middleware(['auth:manager'])->group(function () {
         // });
 
         Route::get('manager/leads/client', [Admin_client_controller::class, 'manager_leads'])->name('manager.leads');
+        
 
         Route::controller(attendancecontroller::class)->group(function(){
 
@@ -1020,6 +1021,7 @@ Route::controller(employeecontroller::class)->group(function(){
     Route::match(['get' , 'post'] , 'account-manager' , 'accountManager')->name('account-manager');
     Route::match(['get' , 'post'] , 'account-view' , 'accountview')->name('account-view');
     Route::match(['get' , 'post'] , 'account-details' , 'accountdetails')->name('account-details');
+    Route::match(['get' , 'post'] , 'add-account' , 'AddAccount')->name('add-account');
 
 
 });

@@ -10,7 +10,7 @@
         <div class="col-lg-3">
             <nav>
                 <ol class="breadcrumb">
-                    {{-- <li><a class="btn btn-primary btn-sm text-white" href="{{route('backend.client')}}"><i class="bi bi-plus-circle"></i> Add Lead</a></li> --}}
+                    <li><a class="btn btn-primary btn-sm text-white" href="{{route('backend.client')}}"><i class="bi bi-plus-circle"></i> Add Lead</a></li>
                     &nbsp;
                     {{-- <li><a class="btn btn-danger btn-sm text-white" href="{{route('backend.archive-client')}}"><i class="bi bi-archive"></i> Archive Lead</a></li> --}}
 

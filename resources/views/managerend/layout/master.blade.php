@@ -378,6 +378,18 @@
                 <span>Report</span>
             </a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('manager.massign-meeting')}}">
+                <i class="bi bi-people-fill"></i>
+                <span>Assign Meeting</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('manager.view-meeting-manager')}}">
+                <img src="{{asset('public/assets/img/meeting.png')}}" style="width:18px; opacity: 0.5;">&nbsp; <span>Attend Meeting</span>
+            </a>
+        </li>
             
         @endif
 

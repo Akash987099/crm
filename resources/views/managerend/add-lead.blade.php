@@ -11,7 +11,7 @@
         <div class="col-lg-2">
             <nav>
                 <ol class="breadcrumb">
-                    <li class="p-1"><a class="btn btn-primary btn-sm text-white" href="{{route('backend.lead')}}">
+                    <li class="p-1"><a class="btn btn-primary btn-sm text-white" href="{{route('manager.leads')}}">
                             <i class="bi bi-card-list"></i> View Lead
                         </a>
                     </li>
@@ -34,7 +34,7 @@
                     </div>
                     @endif
 
-                    <form method="post" action="{{route('lead.client-submit')}}">
+                    <form method="post" action="{{route('add_manager_lead')}}">
                         @csrf
                         <div class="row">
 

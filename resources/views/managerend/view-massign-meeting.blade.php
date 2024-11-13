@@ -37,7 +37,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
-                                            <th>Company</th>
+                                            <th>Employee Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
                                             {{-- <th>Status</th> --}}

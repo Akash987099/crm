@@ -638,9 +638,9 @@ if ($validator->fails()) {
         $archive = $request->archive;
 
         if($id){
-          $update =  employee::where('id' , $id)->update(['status' => 0]);
+          $update =  employee::where('id' , $id)->delete();
         }elseif($archive){
-            $update =  employee::where('id' , $archive)->update(['status' => 1]);
+            $update =  employee::where('id' , $archive)->delete();
         }
 
         if($update)

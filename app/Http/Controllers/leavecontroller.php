@@ -61,8 +61,8 @@ class leavecontroller extends Controller
             $name .= $val->lastname;
 
             // $action = '<a class="dropdown-items text-success viewall" href="javascript:void(0);" style="float:left;" data-id="'.$id.'" ><i class="bi bi-eye" aria-hidden="true"></i></a>';
-            $action = '&nbsp;<a href="javascript:void(0);"  class="text-primary edit" data-id="'.$id.'"><i class="bi bi-pencil-square" aria-hidden="true"></i></a>';
-            $action .= '&nbsp;<a href="javascript:void(0);" class="text-danger delete" data-id="'.$id.'"><i class="bi bi-trash" aria-hidden="true" ></i></a>';
+            $action = '&nbsp;<a href="javascript:void(0);"  class=" btn btn-warning reject" data-id="'.$id.'">Cancel</a>';
+            $action .= '&nbsp;<a href="javascript:void(0);" class=" btn btn-success approve" data-id="'.$id.'">Approve</a>';
 
             $data_arr[] = array(
               "id" => ++$start,
@@ -72,6 +72,7 @@ class leavecontroller extends Controller
             //   "image"     => $image,
               "name"   => $name,
               "emp"   => $emp,
+              'action' => $action
             );
 
         }

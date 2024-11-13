@@ -172,8 +172,8 @@
 
                             <div class="col-lg-6">
                                 <div class="form-group m-2">
-                                    <label>Aadhar Document(pdf) </label>
-                                    <input type="file" name="aadhar" class="form-control" value="{{$data->aadhardoc}}" accept="application/pdf">
+                                    <label>Aadhar Document</label>
+                                    <input type="file" name="aadhar" class="form-control" value="{{$data->aadhardoc}}" >
                                     <iframe src="{{$data->aadhardoc}}" frameborder="0"></iframe>
                                     <span class="text-danger">@error('document_file') {{$message}} @enderror</span>
                                 </div>
@@ -189,8 +189,8 @@
 
                             <div class="col-lg-6">
                                 <div class="form-group m-2">
-                                    <label>Pan card(Pdf) </label>
-                                    <input type="file" name="pancard" class="form-control" value="{{$data->pandoc}}" accept="application/pdf">
+                                    <label>Pan card</label>
+                                    <input type="file" name="pancard" class="form-control" value="{{$data->pandoc}}" >
                                     <iframe src="{{$data->pandoc}}" frameborder="0"></iframe>
                                     <span class="text-danger">@error('document_file') {{$message}} @enderror</span>
                                 </div>

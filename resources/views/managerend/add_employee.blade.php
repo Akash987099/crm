@@ -88,11 +88,11 @@
 
                             
 
-                            {{-- <div class="col-lg-6">
+                            <div class="col-lg-6">
                                 <div class="form-group m-2">
                                     <label>Assign Employee <span class="text-danger">*</span></label>
 
-                                    <select name="assign" id="">
+                                    <select name="assign" id="" class="form-control">
                                         @foreach ($manager as $key =>  $val)
 
                                         <option value="{{$val->id}}">{{$val->name ?? ''}} ({{$val->phone ?? ''}})</option>
@@ -102,7 +102,7 @@
                                    
                                     <span class="text-danger">@error('email') {{$message}} @enderror</span>
                                 </div>
-                            </div> --}}
+                            </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group m-2">

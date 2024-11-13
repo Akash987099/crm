@@ -49,8 +49,8 @@
                                 <th>Login Time</th>
                                 <th>Logout Time</th>
                                 <th>Date</th>
-                                <th>Image</th>
-                                {{-- <th>Action</th> --}}
+                                {{-- <th>Image</th> --}}
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -112,6 +112,61 @@
 
 <script>
     
+    $('body').on('click' , '.approve' , function(){
+
+// alert('Calling');
+var id = $(this).attr('data-id');
+
+// alert(id);
+
+$.ajax({
+
+    url : "{{route('approved-leave')}}",
+    type : "GET",
+    data : {id : id},
+    success : function(response){
+        // console.log(response);
+
+        if(response.status == "success"){
+            alert('success');
+        }
+
+        if(response.status == 'error'){
+            alert('error');
+        }
+    }
+
+});
+
+});
+
+$('body').on('click' , '.reject' , function(){
+
+// alert('Calling');
+var id = $(this).attr('data-id');
+
+// alert(id);
+
+$.ajax({
+
+    url : "{{route('reject-leave')}}",
+    type : "GET",
+    data : {id : id},
+    success : function(response){
+        // console.log(response);
+
+        if(response.status == "success"){
+            alert('success');
+        }
+
+        if(response.status == 'error'){
+            alert('error');
+        }
+    }
+
+});
+
+});
 
     $(document).ready(function(){
 
@@ -156,6 +211,9 @@
                 {
                     data: 'date',
                 },
+                {
+                    data : "action"
+                }
                 
             ]
 

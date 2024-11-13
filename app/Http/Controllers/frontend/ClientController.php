@@ -217,6 +217,9 @@ class ClientController extends Controller
     {
 
         // dd($request->all());
+
+        // dd(Auth::guard('manager')->user()->id);
+
         if ($request->ajax()) {
             $data = DB::table('clients');
                 // ->where('user_id', Auth::guard('employee')->user()->id)
@@ -224,11 +227,11 @@ class ClientController extends Controller
                 if(Auth::guard('manager')->check()){
 
                     $empid = employee::where('user_id' , Auth::guard('manager')->user()->id)->pluck('id');
-                   $data->whereIn('user_id' , $empid);
+                   $data->whereIn('user_id' , $empid)->orwhere('user_id' , Auth::guard('manager')->user()->id);
                 }
 
-                $data->where('archive', 0)
-                ->orderBy('id' , 'desc')
+                // $data->where('archive', 0)
+                $data->orderBy('id' , 'desc')
                 // ->where('user_type', 0)
                 ->get();
             return DataTables::of($data)->addIndexColumn()

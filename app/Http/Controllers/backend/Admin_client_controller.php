@@ -74,6 +74,48 @@ class Admin_client_controller extends Controller
         // return view('backend.lead');
     }
 
+    public function manager_add_lead(){
+
+        $employeedata = employee::all();
+
+        return view('managerend.add-lead' , compact('employeedata'));
+    }
+
+    public function add_manager_lead(Request $request){
+
+        $request->validate([
+            'client_name' => 'required',
+            'company_name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            // 'meating_time' => 'required',
+            // 'meating_date' => 'required',
+            // 'assign_meating' => 'required'
+        ]);
+
+        $insertGetId = DB::table('clients')->insertGetId([
+            'user_id' => Auth::guard('manager')->user()->id,
+            'client_name' => $request->client_name,
+            'company_name' => $request->company_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'meating_time' => $request->meating_time,
+            'meating_date' => $request->meating_date,
+            'assign_meating' => $request->assign_meating,
+            'client_potential' => $request->client_potential,
+            'typeofuser' => $request->typeofuser,
+            'remark' => $request->remark,
+            'created_date' => date('d-m-Y'),
+            'created_time' => time(),
+            'ip_address' => $_SERVER['REMOTE_ADDR']
+        ]);
+        if ($insertGetId) {
+            return back()->with('success', 'Client save successfully!');
+        }
+
+    }
+
     public function viewlistlead(Request $request){
 
         // dd($request->all());/s

@@ -116,7 +116,7 @@ class ManagerAssignMeetingController extends Controller
     public function View_Manager_Assign_Meating(Request $request)
     {
         $client_data = DB::table('clients')
-            ->where('assign_meating', Auth::guard('manager')->user()->id)
+            ->where('manager_id', Auth::guard('manager')->user()->id)
             ->where('typeofuser', 1)
             ->where('archive', 0)
             ->get();

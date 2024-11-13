@@ -294,6 +294,7 @@ if ($validator->fails()) {
 
         $data = [
 
+            'manager_id' => Auth::guard('manager')->user()->id,
             'user_id' => $request->assignuser,
             'firstname' => $firstname,
             'lastname' => $lastname,

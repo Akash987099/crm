@@ -115,8 +115,11 @@ class ManagerAssignMeetingController extends Controller
 
     public function View_Manager_Assign_Meating(Request $request)
     {
+
+        $employeeIds = employee::where('manager_id', Auth::guard('manager')->user()->id)->pluck('id');
+
         $client_data = DB::table('clients')
-            ->where('manager_id', Auth::guard('manager')->user()->id)
+            ->whereIn('assign_meating', $employeeIds)
             ->where('typeofuser', 1)
             ->where('archive', 0)
             ->get();

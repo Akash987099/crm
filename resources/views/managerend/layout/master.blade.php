@@ -365,12 +365,12 @@
             </a>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link collapsed" href="">
                 <i class="bi bi-people-fill"></i>
                 <span>Manage Task</span>
             </a>
-        </li>
+        </li> --}}
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('manager.report')}}">

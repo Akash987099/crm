@@ -61,6 +61,7 @@ use App\Http\Controllers\agentcontroller;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\PayrollController;
+use App\Http\Controllers\MessageController;
 
 
 /*
@@ -924,6 +925,14 @@ Route::prefix('manager')->middleware(['auth:manager'])->group(function () {
         // Route::get('deshboard', function () {
         //     return view('managerend.manager-desh');
         // });
+
+        Route::controller(MessageController::class)->group(function(){
+
+            Route::match(['get' , 'post'] , 'manager/message' , 'MangerMessage')->name('MangerMessage');
+            Route::match(['get' , 'post'] , 'Addmessage' , 'Addmessage')->name('Addmessage');
+            Route::match(['get' , 'post'] , 'messagelist' , 'messagelist')->name('messagelist');
+
+        });
 
         Route::get('manager/leads/client', [Admin_client_controller::class, 'manager_leads'])->name('manager.leads');
         Route::match(['get' , 'post'] , 'manager_add_lead' , [Admin_client_controller::class, 'manager_add_lead'])->name('manager.add-lead');

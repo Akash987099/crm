@@ -161,7 +161,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link collapsed" href="{{route('MangerMessage')}}">
                     <i class="bi bi-people-fill"></i>
                     <span>Message</span>
                 </a>

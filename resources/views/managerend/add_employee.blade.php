@@ -88,7 +88,7 @@
 
                             
 
-                            <div class="col-lg-6">
+                            {{-- <div class="col-lg-6">
                                 <div class="form-group m-2">
                                     <label>Assign Employee <span class="text-danger">*</span></label>
 
@@ -102,7 +102,7 @@
                                    
                                     <span class="text-danger">@error('email') {{$message}} @enderror</span>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-lg-6">
                                 <div class="form-group m-2">

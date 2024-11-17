@@ -211,7 +211,8 @@ class attendancecontroller extends Controller
     }
 
     public function manager_attendance(){
-        $employee = employee::all();
+        $manager = Auth::guard('manager')->user()->id;
+        $employee = employee::where('manager_id', $manager)->get();
         return view('managerend.attendance' , compact('employee'));
     }
 
@@ -358,10 +359,10 @@ class attendancecontroller extends Controller
         ->select('attendance.*', 'employee.staffid as staffid', 'employee.firstname', 'employee.lastname')
         ->orderBy('attendance.id', 'desc');
 
-        if (Auth::guard('manager')->check() && Auth::guard('manager')->user()->user_type == 2) {
+        if (Auth::guard('manager')->check()) {
             $user_id = Auth::guard('manager')->user()->id;
             // $employee_ids = employee::where('user_id', $user_id)->pluck('id');
-            $data->where('employee.user_id', $user_id);
+            $data->where('employee.manager_id', $user_id);
         }
 
         

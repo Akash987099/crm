@@ -393,11 +393,38 @@
             
         @endif
 
-          {{-- @if(Auth::guard('manager')->user()->user_type == 3) --}}
+        @if(Auth::guard('manager')->user()->user_type == 4)
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('MangerMessage')}}">
+                <i class="bi bi-people-fill"></i>
+                <span>Notifications</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="">
+                <i class="bi bi-people-fill"></i>
+                <span>Aget</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('manager.leads')}}">
+                <i class="bi bi-people-fill"></i>
+                <span>Lead</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('file-manage')}}">
+                <i class="bi bi-people-fill"></i>
+                <span>File Management </span>
+            </a>
+        </li>  
        
             
-        {{-- @endif --}}
+        @endif
 
     </aside>
 

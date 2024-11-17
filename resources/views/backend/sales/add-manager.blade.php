@@ -73,6 +73,7 @@
                                         <option value="1">Manager</option>
                                         <option value="2">ZSM</option>
                                         <option value="3">Account Manager</option>
+                                        <option value="4">Distributor</option>
                                     </select>
                                     <span class="text-danger">@error('user_type') {{$message}} @enderror</span>
                                 </div>

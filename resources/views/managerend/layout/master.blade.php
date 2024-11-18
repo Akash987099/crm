@@ -403,7 +403,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="">
+            <a class="nav-link collapsed" href="{{route('Magent')}}">
                 <i class="bi bi-people-fill"></i>
                 <span>Agent</span>
             </a>

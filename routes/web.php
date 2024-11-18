@@ -562,7 +562,7 @@ Route::middleware(['guard'])->group(function () {
     Route::group(['prefix' => 'admin/'], function () {
 
 
-         Route::get('/agents', [Tele_HomeController::class, 'agent'])->name('agent');
+    Route::get('/agents', [Tele_HomeController::class, 'agent'])->name('agent');
     Route::get('/agent/lists', [Tele_HomeController::class, 'agentList'])->name('agent-list');
     Route::get('/agent/list/invoices', [Tele_HomeController::class, 'agentGetbyid'])->name('agent-Getbyid');
     Route::get('/agent/list/singles', [Tele_HomeController::class, 'exportSingle'])->name('exportSingle');
@@ -925,6 +925,15 @@ Route::prefix('manager')->middleware(['auth:manager'])->group(function () {
         // Route::get('deshboard', function () {
         //     return view('managerend.manager-desh');
         // });
+
+    Route::get('/manager/agents', [Tele_HomeController::class, 'Magent'])->name('Magent');
+    Route::get('/manager/agent/lists', [Tele_HomeController::class, 'MagentList'])->name('Magent-list');
+    Route::match(['get' , 'post'] , 'manager/admin-Add-agent' ,  [Tele_HomeController::class, 'MadminAddagent'])->name('madmin-Add-agent');
+    Route::match(['get' , 'post'] , 'manager/admin-Add-agent-single' ,  [Tele_HomeController::class, 'Maddagents'])->name('Maddagents');
+    Route::match(['get' , 'post'] , 'manager/m_view_agent' ,  [Tele_HomeController::class, 'm_view_agent'])->name('m_view_agent');
+    Route::match(['get' , 'post'] , 'manager/updateagents' ,  [Tele_HomeController::class, 'Mupdateagents'])->name('Mupdateagents');
+    Route::get('/manager/agent/list/invoices', [Tele_HomeController::class, 'MagentGetbyid'])->name('Magent-Getbyid');
+    Route::get('/manager/agent/list/singles', [Tele_HomeController::class, 'MexportSingle'])->name('MexportSingle');
 
         Route::controller(MessageController::class)->group(function(){
 

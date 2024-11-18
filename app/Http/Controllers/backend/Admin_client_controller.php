@@ -77,8 +77,9 @@ class Admin_client_controller extends Controller
     public function manager_add_lead(){
 
         $employeedata = employee::all();
+        $product = DB::table('product')->get();
 
-        return view('managerend.add-lead' , compact('employeedata'));
+        return view('managerend.add-lead' , compact('employeedata' , 'product'));
     }
 
     public function add_manager_lead(Request $request){
@@ -102,7 +103,8 @@ class Admin_client_controller extends Controller
             'address' => $request->address,
             'meating_time' => $request->meating_time,
             'meating_date' => $request->meating_date,
-            'assign_meating' => $request->assign_meating,
+            // 'assign_meating' => $request->assign_meating,
+            'product' => $request->product,
             'client_potential' => $request->client_potential,
             'typeofuser' => $request->typeofuser,
             'remark' => $request->remark,

@@ -106,7 +106,7 @@
                                     <span class="text-danger">@error('meating_date') {{$message}} @enderror</span>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            {{-- <div class="col-lg-6">
                                 <div class="form-group m-2">
                                     <label>Assign Meating <span class="text-danger">*</span></label>
                                     <select name="assign_meating" class="form-control assign_meating">
@@ -114,6 +114,21 @@
                                         @foreach ($employeedata as $key => $data)
 
                                         <option value="{{$data->id}}">{{$data->firstname}} {{$data->lastname}}</option>
+                                            
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div> --}}
+
+                            <div class="col-lg-6">
+                                <div class="form-group m-2">
+                                    <label>Select Project<span class="text-danger">*</span></label>
+                                    <select name="product" class="form-control assign_meating">
+
+                                        @foreach ($product as $key => $data)
+
+                                        <option value="{{$data->name}}">{{$data->name}}</option>
                                             
                                         @endforeach
 

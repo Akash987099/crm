@@ -405,7 +405,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="">
                 <i class="bi bi-people-fill"></i>
-                <span>Aget</span>
+                <span>Agent</span>
             </a>
         </li>
 

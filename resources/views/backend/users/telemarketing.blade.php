@@ -12,7 +12,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="p-1"><a class="btn btn-primary text-white" href="{{route('backend.add-telemarket')}}"><i class="bi bi-plus-circle"></i> Add User</a></li>
-                    <li class="p-1"><a class="btn btn-danger text-white" href="{{route('backend.archive-telemarketing')}}"><i class="bi bi-archive"></i> Archive User</a></li>
+                    {{-- <li class="p-1"><a class="btn btn-danger text-white" href="{{route('backend.archive-telemarketing')}}"><i class="bi bi-archive"></i> Archive User</a></li> --}}
                 </ol>
             </nav>
         </div>

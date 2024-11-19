@@ -201,8 +201,8 @@ class telemarketController extends Controller
     {
         $delete_id = Crypt::decrypt($id);
         $delete = Telemarketing::find($delete_id);
-        $delete->archive = 1;
-        $delete->save();
+        // $delete->archive = 1;
+        $delete->delete();
         return back()->with('success', 'Record delete successfully!');
     }
     public function Archive_telemarketing()

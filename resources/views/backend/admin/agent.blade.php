@@ -26,7 +26,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="p-1"><a class="btn btn-primary btn-sm text-white" href="{{route('admin-Add-agent')}}"><i class="bi bi-plus-circle"></i> Add</a></li>
-                    <li class="p-1"><a class="btn btn-danger btn-sm text-white" href="{{route('archiveemployee')}}"><i class="bi bi-archive"></i> Archive</a></li>
+                    {{-- <li class="p-1"><a class="btn btn-danger btn-sm text-white" href="{{route('archiveemployee')}}"><i class="bi bi-archive"></i> Archive</a></li> --}}
                     <li class="p-1"><a href="{{ url()->previous() }}" class="btn btn-success btn-sm text-white"><i class="bi bi-arrow-left" ></i> Back</a></li>
                 </ol>
             </nav>

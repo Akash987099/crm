@@ -18,6 +18,7 @@ class ManagerController extends Controller
 
     public function View_manager(Request $request)
     {
+        // return "5555";
 
         if ($request->ajax()) {
             $data = DB::table('managers')
@@ -184,9 +185,9 @@ class ManagerController extends Controller
     public function Delete_manager($id)
     {
         $delete_id = Crypt::decrypt($id);
-        $delete_manager = Manager::where('id', $delete_id)->first();
-        $delete_manager->archive = 1;
-        $delete_manager->save();
+        $delete_manager = Manager::where('id', $delete_id)->delete();
+        // $delete_manager->archive = 1;
+        // $delete_manager->save();
         return back()->with('success', 'Manager delete successfully!');
     }
     public function View_Archive_manager()

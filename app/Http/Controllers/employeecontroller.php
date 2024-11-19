@@ -292,9 +292,15 @@ if ($validator->fails()) {
             $path = $checkbook->store($directory, 'public');
         }
 
+        $user_id = '0';
+        if (Auth::guard('manager')->check() && Auth::guard('manager')->user()->user_type == 2) {
+            $user_id = Auth::guard('manager')->user()->id;
+        }  
+
         $data = [
 
-            'manager_id' => Auth::guard('manager')->user()->id,
+            'manager_id' => $user_id,
+
             // 'user_id' => $request->assignuser,
             'firstname' => $firstname,
             'lastname' => $lastname,
@@ -740,6 +746,7 @@ if ($validator->fails()) {
     public function employeeLogins(Request $request)
     {
 
+        //  return "55555";    
         
         // $current_time = Carbon::now()->setTimezone('Asia/Kolkata');
         // $start_time = Carbon::createFromTime(9, 0, 0, 'Asia/Kolkata'); // 9:00 AM

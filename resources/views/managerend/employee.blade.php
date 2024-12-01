@@ -52,7 +52,7 @@
 
                     
 
-                    <div class="card-body pb-0">
+                    {{-- <div class="card-body pb-0">
                         <div class="row">
                        <div class="form-group col-4">
 
@@ -66,7 +66,7 @@
     
                     </div>
 
-                </div>
+                </div> --}}
 
                     <br>
                     <hr>

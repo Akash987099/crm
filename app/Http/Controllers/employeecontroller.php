@@ -500,8 +500,8 @@ if ($validator->fails()) {
         if (Auth::guard('manager')->check()) {
             // dd('dfheghgh');
             $user_id = Auth::guard('manager')->user()->id;
-            dd($user_id);
-            $data->where('employee.user_id', $user_id);
+            // dd($user_id);
+            $data->where('employee.user_id', $user_id)->orwhere('manager_id' , $user_id);
         }        
         
         

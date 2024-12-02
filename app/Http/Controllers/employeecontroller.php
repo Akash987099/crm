@@ -497,7 +497,7 @@ if ($validator->fails()) {
 
         $data = employee::where('employee.status' , 1);
 
-        if (Auth::guard('manager')->check() && Auth::guard('manager')->user()->user_type == 2) {
+        if (Auth::guard('manager')->check()) {
             $user_id = Auth::guard('manager')->user()->id;
             $data->where('employee.user_id', $user_id);
         }        

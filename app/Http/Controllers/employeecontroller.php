@@ -498,6 +498,7 @@ if ($validator->fails()) {
         $data = employee::where('employee.status' , 1);
 
         if (Auth::guard('manager')->check()) {
+            dd('dfheghgh');
             $user_id = Auth::guard('manager')->user()->id;
             $data->where('employee.user_id', $user_id);
         }        

@@ -38,6 +38,12 @@ class ManagerController extends Controller
         return view('backend.sales.manager');
     }
 
+    public function Distributor(){
+
+        return view('pages.Distributor');
+
+    }
+
 
     public function Add_Manager()
     {

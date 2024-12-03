@@ -5,12 +5,12 @@
 <div class="pagetitle">
     <div class="row">
         <div class="col-lg-8">
-            <h1><i class="bi bi-card-list"></i> Manager/HR</h1>
+            <h1><i class="bi bi-card-list"></i> Distributor</h1>
         </div>
         <div class="col-lg-4">
             <nav>
                 <ol class="breadcrumb">
-                    <li class="p-1"><a class="btn btn-primary text-white" href="{{route('backend.manager.add-manager')}}"><i class="bi bi-plus-circle"></i> Add Manager/HR</a></li>
+                    <li class="p-1"><a class="btn btn-primary text-white" href="{{route('backend.manager.add-manager')}}"><i class="bi bi-plus-circle"></i> Add Distributor</a></li>
                     {{-- <li class="p-1"><a class="btn btn-danger text-white" href="{{route('backend.manager.archive')}}"><i class="bi bi-archive"></i> Archive Manager/HR</a></li> --}}
                 </ol>
             </nav>

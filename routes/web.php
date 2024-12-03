@@ -711,6 +711,9 @@ Route::middleware(['guard'])->group(function () {
         /////////////////////////////SALES MANAGER //////////////////////////////////////////
         Route::get('manager', [ManagerController::class, 'View_manager'])->name('backend.manager.view-manager');
         Route::get('add-manager', [ManagerController::class, 'Add_Manager'])->name('backend.manager.add-manager');
+
+        Route::get('Distributor', [ManagerController::class, 'Distributor'])->name('Distributor'); //new 
+
         Route::post('add-manager', [ManagerController::class, 'Create_Manager']);
         Route::get('edit-manager/{id}', [ManagerController::class, 'Edit_manager']);
         Route::post('edit-manager', [ManagerController::class, 'Update_manager']);

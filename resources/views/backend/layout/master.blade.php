@@ -210,6 +210,13 @@ $setting = DB::table('settings')->where('id', Session::get('company_id'))->first
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="{{route('Distributor')}}">
+                            <i class="bi bi-ussers"></i>
+                            <span>Distributor</span>
+                        </a>
+                    </li>
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('Designation')}}">
                     <i class="bi bi-telephone-fill"></i>

@@ -38,7 +38,23 @@ class ManagerController extends Controller
         return view('backend.sales.manager');
     }
 
-    public function Distributor(){
+    public function Distributor(Request $request){
+
+        if ($request->ajax()) {
+            $data = DB::table('managers')
+                ->where('user_type', 4)
+                ->get();
+            return DataTables::of($data)->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a class="btn btn-primary btn-sm m-1" title="Update" href="' . url('admin/edit-manager', ['id' => Crypt::encrypt($row->id)]) . '"> <i class="bi bi-pencil-square"></i></a>';
+                    $btn .= '<a class="btn btn-warning btn-sm m-1" title="Meetings" href="' . route('backend.manager.meetings', ['managerid' => Crypt::encrypt($row->id)]) . '"><i class="bi bi-calendar-event"></i></a>';
+                    $btn .= '<a class="btn btn-info btn-sm m-1" title="Cold Calls" href="' . route('backend.manager-coldcall', ['managerid' => Crypt::encrypt($row->id)]) . '"><i class="bi bi-c-square"></i></a>';
+                    $btn .= '<a class="btn btn-danger btn-sm m-1" title="Delete" href="' . url('admin/manager-delete', ['id' => Crypt::encrypt($row->id)]) . '"><i class="bi bi-trash"></i></a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
 
         return view('pages.Distributor');
 
@@ -47,6 +63,8 @@ class ManagerController extends Controller
 
     public function Add_Manager()
     {
+        
+        
         return view('backend.sales.add-manager');
     }
     public function Create_Manager(Request $request)

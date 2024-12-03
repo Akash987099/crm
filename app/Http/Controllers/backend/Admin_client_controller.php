@@ -131,8 +131,7 @@ class Admin_client_controller extends Controller
                 $data->whereIn('user_id', $empid);
             }
         
-            $data->where('archive', 0)
-                ->select(
+            $data->select(
                     'clients.*',
                     DB::raw("CONCAT(employee.firstname, ' ', employee.lastname) as employee_name")
                 );

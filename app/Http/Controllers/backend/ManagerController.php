@@ -40,6 +40,7 @@ class ManagerController extends Controller
 
     public function Distributor(Request $request){
 
+        dd("njgjjkr");
         if ($request->ajax()) {
             $data = DB::table('managers')
                 ->where('user_type', 4)

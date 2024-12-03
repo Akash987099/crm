@@ -80,7 +80,7 @@
         var table = $('.dataTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('backend.manager.view-manager') }}",
+            ajax: "{{ route('Distributor') }}",
 
             dom: 'Blfrtip',
             buttons: [{

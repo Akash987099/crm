@@ -22,7 +22,7 @@ class ManagerController extends Controller
 
         if ($request->ajax()) {
             $data = DB::table('managers')
-                ->where('archive', 0)
+                // ->where('archive', 0)
                 ->get();
             return DataTables::of($data)->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -44,7 +44,7 @@ class ManagerController extends Controller
         if ($request->ajax()) {
 
             $data = DB::table('managers')
-                ->where('user_type', 5)
+                ->where('user_type', 4)
                 ->get();
 
             return DataTables::of($data)->addIndexColumn()

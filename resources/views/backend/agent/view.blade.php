@@ -154,7 +154,7 @@
                             </div>
                             @else
                             
-                            <div id="document-container">
+                            {{-- <div id="document-container">
                                 <div class="row">
                                     @foreach($document_name as $index => $name)
                                         <div class="col-lg-6">
@@ -182,7 +182,39 @@
                                         </div>
                                     @endforeach
                                 </div>
+                            </div> --}}
+
+                            <div id="document-container">
+                                <div class="row">
+                                    @foreach($document_name as $index => $name)
+                                        <div class="col-lg-6">
+                                            <div class="form-group m-2">
+                                                <label>Document <span class="text-danger">*</span></label>
+                                                <input type="text" name="aadharcard[]" class="form-control" value="{{ $name }}" placeholder="Document">
+                                                <span class="text-danger">@error('state') {{ $message }} @enderror</span>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="col-lg-6">
+                                            <div class="form-group m-2">
+                                                <label>Document (pdf)</label>
+                                                <input type="hidden" name="documental" value="{{ isset($documents[$index]['file_path']) ? asset($documents[$index]['file_path']) : '' }}" class="form-control">
+                                                <input type="file" name="aadhar[]" value="{{ isset($documents[$index]['file_path']) ? asset($documents[$index]['file_path']) : '' }}" class="form-control">
+                                                
+                                                @if(isset($documents[$index]) && isset($documents[$index]['file_path']))
+                                                    <iframe src="{{ asset('public/') }}/{{ $documents[$index]['file_path'] }}" width="100%" height="200px"></iframe>
+                                                    <a href="{{ asset('public/') }}/{{ $documents[$index]['file_path'] }}">Click Here</a>
+                                                @else
+                                                    <p>No document available</p>
+                                                @endif
+                                                
+                                                <span class="text-danger">@error('document_file') {{ $message }} @enderror</span>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
+                            
                             
                             @endif
 

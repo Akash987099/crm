@@ -10,7 +10,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="p-1"><a class="btn btn-primary btn-sm text-white" href="{{route('agent-master')}}"><i class="bi bi-list"></i> View</a></li>
-                    <li class="p-1"><a class="btn btn-danger btn-sm text-white" href="{{url('manager/archive-market-mteam')}}"><i class="bi bi-archive"></i> Archive</a></li>
+                    {{-- <li class="p-1"><a class="btn btn-danger btn-sm text-white" href="{{url('manager/archive-market-mteam')}}"><i class="bi bi-archive"></i> Archive</a></li> --}}
                     <li class="p-1"><a href="{{ url()->previous() }}" class="btn btn-success btn-sm text-white"><i class="bi bi-arrow-left" ></i> Back</a></li>
                     
                 </ol>

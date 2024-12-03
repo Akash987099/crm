@@ -40,11 +40,13 @@ class ManagerController extends Controller
 
     public function Distributor(Request $request){
 
-        dd("njgjjkr");
+        // dd("njgjjkr");
         if ($request->ajax()) {
+
             $data = DB::table('managers')
-                ->where('user_type', 4)
+                ->where('user_type', 5)
                 ->get();
+
             return DataTables::of($data)->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $btn = '<a class="btn btn-primary btn-sm m-1" title="Update" href="' . url('admin/edit-manager', ['id' => Crypt::encrypt($row->id)]) . '"> <i class="bi bi-pencil-square"></i></a>';
